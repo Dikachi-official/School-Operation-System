@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 
+
+
 function Navbar(){
     const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
 

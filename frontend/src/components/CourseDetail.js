@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
+
 function CourseDetail() {
     let {course_id} = useParams();
     useEffect(()=>{

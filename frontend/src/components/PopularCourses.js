@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
+
 function PopularCourses() {
     useEffect(()=>{
         document.title='Popular Courses'

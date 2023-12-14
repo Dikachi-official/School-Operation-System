@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 
+
+
+
 const baseUrl = 'http://127.0.0.1:8000/api';
 function AllTeachers() {
     const [teacher, setTeacher]=useState(null);
@@ -16,7 +19,7 @@ function AllTeachers() {
     },[]);
     console.log(teacher);
 
-    
+
   return (
     <div className='container mt-3' >
         <h3>All Teachers</h3>
