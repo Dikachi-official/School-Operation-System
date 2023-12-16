@@ -2,15 +2,15 @@ import React from 'react';
 
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
 
-// OTHER ROTES/COMPONENTS
+// NAVBAR ROuTES
 import Home from './Home';
 import About from './About';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import CourseDetail from './CourseDetail';
 
 // LIST PAGES ROUTE
 import AllCourses from './AllCourses';
+import CourseDetail from './CourseDetail';
 
 
 // USER ROUTE
