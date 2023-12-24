@@ -53,6 +53,7 @@ function Main(){
             <Router>
                 <Navbar/>
                 <Switch>
+                    {/* === USER ROUTE ==== */}
                     <Route path="/" exact component={Home} />
                     <Route path="/about" component={About} />
                     <Route path="/detail/:course_id" component={CourseDetail} />

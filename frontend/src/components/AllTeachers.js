@@ -16,6 +16,7 @@ function AllTeachers() {
     },[]);
     console.log(teacher);
 
+    
   return (
     <div className='container mt-3' >
         <h3>All Teachers</h3>
