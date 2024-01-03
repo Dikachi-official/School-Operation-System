@@ -26,8 +26,9 @@ class UserAdmin(BaseUserAdmin):
         })
     )
 
-    list_display = ['is_student', 'is_teacher']
-    search_fields = ('email', 'username')
+    list_display = ['email', 'username', 'is_student', 'is_teacher']
+    list_editable = ['is_teacher', 'is_student']
+    search_fields = ('email', 'username', )
     ordering = ('email',)
 
 
