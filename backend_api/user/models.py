@@ -61,4 +61,4 @@ class Teacher(models.Model):
     password = models.CharField(max_length=150)
     qualification = models.CharField(max_length=200)
     mobile_no = models.IntegerField()
-    skills = models.TextField()
+    skills = models.TextField(default="Engineering")
