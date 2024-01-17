@@ -11,7 +11,7 @@ function PopularCourses() {
 
   return (
     <div className='container mt-3' >
-        <h3>APopular courses</h3>
+        <h3>Popular courses</h3>
         {/*=== LATEST COURSES ===*/}
         <h3 className='pb-1 mb-4 mt-4 text-start'>Popular Courses  <Link to="" className="ml-7">See All...</Link></h3>
             <div className='row p-2'>

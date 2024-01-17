@@ -52,7 +52,7 @@ function Navbar(){
                                     className="dropdown-menu"
                                     aria-labelledby="navbarDropdownMenuLink"
                                 >
-                                    {teacherLoginStatus!='true' &&
+                                    {teacherLoginStatus!=='true' &&
                                         <>
                                         <li>
                                             <Link to="/teacher-register" className="dropdown-item" >

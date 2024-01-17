@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import axios from 'axios';
 
 
 
-const baseUrl='http://127.0.0.1:8000/api/teacher/';
+const baseUrl='http://127.0.0.1:8000/user/teacher/';
 function TeacherLogin() {
 
     const [teacherLoginData,setTeacherLoginData]=useState({
-        'email' : '',
-        'password' : ''
+        email : '',
+        password : '',
     });
 
 
@@ -24,13 +25,13 @@ function TeacherLogin() {
 
     //Submit Form
     const submitForm=()=>{
-        const teacherFormData=new FormData;
+        const teacherFormData=new FormData();
         teacherFormData.append('email',teacherLoginData.email)
         teacherFormData.append('password',teacherLoginData.password)
         try{
             axios.post(baseUrl+'/teacher-login',teacherFormData)
             .then((res)=>{
-                if(res.data.bool==true){
+                if(res.data.bool===true){
                     localStorage.setItem('teacherLoginStatus',true);
                     //redirect to dashboard after login
                     window.location.href='/teacher-dashboard';
@@ -44,7 +45,7 @@ function TeacherLogin() {
 
     // If logged in teacher tries accessing login page, redirect to his dashbord
     const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
-    if (teacherLoginStatus=='true'){
+    if (teacherLoginStatus==='true'){
         window.location.href='/teacher-dashboard';
     }
 

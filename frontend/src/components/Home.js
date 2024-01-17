@@ -73,7 +73,7 @@ function Home(){
 
             {/*=== POPULAR COURSES ===*/}
             <div className='p-0 d-flex w-100' >
-                <h3 className='pb-1 mb-4 mt-5 justify-content-start w-auto'>Popular Courses</h3> <h3 className='pb-1 mb-4 mt-5 justify-content-end text-start'><Link to="" className='align-items-end justify-content-end ml-90 w-auto text-end'>See All...</Link></h3>
+                <h3 className='pb-1 mb-4 mt-5 justify-content-start w-auto'>Popular Courses</h3> <h3 className='pb-1 mb-4 mt-5 justify-content-end text-start'><Link to="/popular-courses" className='align-items-end justify-content-end ml-90 w-auto text-end'>See All...</Link></h3>
             </div>
             <div className='row p-2'>
                 <div className='col-md-3 p-2'>
@@ -132,7 +132,7 @@ function Home(){
 
 
             {/*=== FEATURED TEACHERS ===*/}
-            <h3 className='pb-1 mb-4 mt-5 text-start'>Featured Teachers <Link to="">See All...</Link></h3>
+            <h3 className='pb-1 mb-4 mt-5 text-start'>All Lecturers <Link to="/all-teachers">See All...</Link></h3>
             <div className='row p-2'>
                 <div className='col-md-3 p-2'>
                     <div className="card">
