@@ -35,12 +35,14 @@ import MyStudents from './Teacher/MyStudents';
 import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
 import TeacherDetail from './Teacher/TeacherDetail';
+import AddChapter from './Teacher/AddChapter';
 
 
 //OTHER ROUTES
 import PopularCourses from './PopularCourses';
 import CategoryCourses from './CategoryCourses';
 import AllTeachers from './AllTeachers';
+
 
 
 
@@ -78,6 +80,8 @@ function Main(){
                     <Route path="/teacher-profile-setting" component={TeacherProfileSetting} />
                     <Route path="/teacher-change-password" component={TeacherChangePassword} />
                     <Route path="/teacher-detail/:teacher_id" component={TeacherDetail} />
+                    <Route path="/add-chapter/:course_id" component={AddChapter} />
+
 
 
                     {/*=== OTHER ROUTES === */}

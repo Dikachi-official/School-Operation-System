@@ -72,7 +72,7 @@ function Navbar(){
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="" className="dropdown-item" >
+                                        <Link to="/teacher-logout" className="dropdown-item" >
                                             Logout
                                         </Link>
                                     </li>

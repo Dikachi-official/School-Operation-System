@@ -55,6 +55,9 @@ class Student(models.Model):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    def __str__(self):
+        return self.full_name
+
 
 
 # Teacher Model
@@ -68,3 +71,6 @@ class Teacher(models.Model):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
+    def __str__(self):
+        return self.full_name

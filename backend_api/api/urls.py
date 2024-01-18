@@ -2,5 +2,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    #path()
+    # All Category List
+    path('category/', views.CategoryList.as_view()),
+
+    # All courses List
+    path('course/', views.CourseList.as_view()),
+
+    # Specific teacher course list
+    path('teacher-courses/<int:teacher_id>', views.TeacherCourseList.as_view()),
+
+    # All Chapters
+    path('chapter/', views.ChapterList.as_view()),
 ]

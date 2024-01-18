@@ -4,13 +4,16 @@ import axios from 'axios';
 
 
 
-const baseUrl='http://127.0.0.1:8000/user/teacher/';
+const baseUrl='http://127.0.0.1:8000/user';
 function TeacherLogin() {
 
     const [teacherLoginData,setTeacherLoginData]=useState({
         email : '',
         password : '',
     });
+
+
+    const [errorMsg, setErrorMsg]=useState('');
 
 
     // Change in Input
@@ -29,12 +32,15 @@ function TeacherLogin() {
         teacherFormData.append('email',teacherLoginData.email)
         teacherFormData.append('password',teacherLoginData.password)
         try{
-            axios.post(baseUrl+'/teacher-login',teacherFormData)
+            axios.post(baseUrl+'/teacher-login/',teacherFormData)
             .then((res)=>{
                 if(res.data.bool===true){
                     localStorage.setItem('teacherLoginStatus',true);
+                    localStorage.setItem('teacherId',res.data.teacher_id);
                     //redirect to dashboard after login
                     window.location.href='/teacher-dashboard';
+                }else{
+                    setErrorMsg('Invalid Email or Password!!!');
                 }
             });
         }catch(error){
@@ -63,13 +69,15 @@ function TeacherLogin() {
                 <div className="card">
                     <h3 className="card-header">Teacher Login</h3>
                     <div className='card-body'>
+                        {errorMsg && <p className='text danger'>{errorMsg}</p>}
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">
                                     Email address
                                 </label>
                                 <input type="email" className="form-control"
-                                    value={teacherLoginData.email} onChange={handleChange} name='email'
+                                    value={teacherLoginData.email} 
+                                    onChange={handleChange} name='email'
                                     id="exampleInputEmail1"
                                     aria-describedby="emailHelp"
                                 />

@@ -11,13 +11,13 @@ function TeacherRegister() {
 
 
   const [teacherData, setTeacherData]=useState({
-    'full_name' : '',
-    'email': '',
-    'password' : '',
-    'qualification' : '',
-    'mobile_no' : '',
-    'skills' : '',
-    'status' : ''
+    full_name : '',
+    email: '',
+    password : '',
+    qualification : '',
+    mobile_no : '',
+    skills : '',
+    status : ''
   });
 
   // Change in Input
@@ -78,8 +78,8 @@ function TeacherRegister() {
     <div className="container mt-5 mb-5">
         <div className="row">
             <div className="col-6 offset-3">
-                {teacherData.status=='success' && <p className="text-success">Thanks for your registration</p>}
-                {teacherData.status=='error' && <p className="text-success">Something wrong happened</p>}
+                {teacherData.status==='success' && <p className="text-success m-2">Thanks for your registration</p>}
+                {teacherData.status==='error' && <p className="text-success m-2">Something wrong happened</p>}
                 <div className="card">
                     <h3 className="card-header">Teacher Register</h3>
                     <div className='card-body'>
