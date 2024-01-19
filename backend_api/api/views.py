@@ -46,6 +46,18 @@ class ChapterList(generics.ListCreateAPIView):
     #permission_classes = [permissions.IsAuthenticated]
 
 
+
+
+class CourseChapterList(generics.ListAPIView):
+    serializer_class = ChapterSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        course_id = self.kwargs['course_id']
+        course = Course.objects.get(pk=course_id)
+        return Chapter.objects.filter(course=course)
+
+
 '''
 class TeacherDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teacher.objects.all()

@@ -1,42 +1,37 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
-import { useState,useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
+
 const baseUrl='http://127.0.0.1:8000/api';
-function TeacherCourses() {
-    const [courseData, setCourseData]=useState([]);
+function CourseChapters() {
+    const [chapterData, setChapterData]=useState([]);
     const {course_id}=useParams()
 
 
-    const teacherId=localStorage.getItem('teacherId');
-    console.log(teacherId);
     //Fetch courses after page refresh
     useEffect(()=>{
         try{
-            axios.get(baseUrl+'/teacher-courses/'+teacherId)
+            axios.get(baseUrl+'/course-chapter/1')
             .then((res)=>{
-                setCourseData(res.data);
+                setChapterData(res.data);
 
             });
         }catch(error){
             console.log(error);
         }
 
-
-
         // Course title on react page
-        document.title='Teacher Courses'
+        document.title='Course Chapters'
     }, []);
 
-    console.log(courseData);
 
 
-
-
-    return (
+    
+  return (
         <div className='container mt-4'>
             <div className='row'>
                 <aside className='col-md-3'>
@@ -44,26 +39,34 @@ function TeacherCourses() {
                 </aside>
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>Teacher Courses</h5>
+                        <h5 className='card-header'>All Chapters</h5>
                         <div className='card-body'>
                             <table className='table table-bordered'>
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Total Enrolled</th>
+                                        <th>Title</th>
+                                        <th>Video</th>
+                                        <th>Remarks</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {courseData.map((course,index)=>
+                                    {chapterData.map((chapter,index)=>
                                     <tr>
-                                        <td> <Link to={'/course-chapters/'+course_id}>{course.title}</Link></td>
-                                        <td><img src={course.image} width='80' className='rounded' alt='{course.title}'/></td>
-                                        <td><Link to="/">256</Link></td>
+                                        <td> <Link to="#">{chapter.title}</Link></td>
+                                        <td>
+                                            <video controls width="200">
+                                                <source src={chapter.video.url} type="video/webm"/>
+
+                                                <source src={chapter.video.url} type="video/mp4"/>
+                                                sorry your browser doesn't support embedded videos.
+                                            </video>
+                                        </td>
+                                        <td>{chapter.remarks}</td>
                                         <td>
                                             <button className='btn btn-danger btn-sm'>Delete</button>
-                                            <Link className='btn btn-success btn-sm ms-2' to={'/add-chapter/'+course.id}>Add Chapter</Link>
+                                            <button className='btn btn-info ms-1'>Edit</button>
+                                            
                                         </td>
                                     </tr>
                                     )}
@@ -74,7 +77,7 @@ function TeacherCourses() {
                 </section>
             </div>
         </div>
-    )
+  )
 }
 
-export default TeacherCourses;
+export default CourseChapters;

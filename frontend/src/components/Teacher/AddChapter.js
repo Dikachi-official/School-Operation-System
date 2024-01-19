@@ -30,7 +30,7 @@ function AddChapter() {
     const handleChange=(event)=>{
         setChapterData({
           ...chapterData,
-          [event.target.name]:event.target.values
+          [event.target.name]:event.target.value
         });
     }
 
@@ -48,13 +48,13 @@ function AddChapter() {
     const formSubmit=()=>{
         const _formData=new FormData();
         _formData.append("course",course_id);
-        _formData.append("title", chapterData.title)
-        _formData.append("description", chapterData.description)
-        _formData.append("video", chapterData.video,chapterData.video.name)
-        _formData.append("remarks", chapterData.remarks)
+        _formData.append("title", chapterData.title);
+        _formData.append("description", chapterData.description);
+        _formData.append("video", chapterData.video,chapterData.video.name);
+        _formData.append("remarks", chapterData.remarks);
         
         try{
-            axios.post(baseUrl+'/chapter/'._formData,{
+            axios.post(baseUrl+'/chapter/',_formData,{
                 headers: {
                     'content-type': 'multipart/form-data'
                 }

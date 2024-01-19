@@ -36,6 +36,8 @@ import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
 import TeacherDetail from './Teacher/TeacherDetail';
 import AddChapter from './Teacher/AddChapter';
+import CourseChapters from './Teacher/CourseChapters';
+import AllChapters from './Teacher/AllChapters';
 
 
 //OTHER ROUTES
@@ -81,6 +83,8 @@ function Main(){
                     <Route path="/teacher-change-password" component={TeacherChangePassword} />
                     <Route path="/teacher-detail/:teacher_id" component={TeacherDetail} />
                     <Route path="/add-chapter/:course_id" component={AddChapter} />
+                    <Route path="/all-chapters" component={AllChapters} />
+                    <Route path="/course-chapters/:course_id" component={CourseChapters} />
 
 
 
