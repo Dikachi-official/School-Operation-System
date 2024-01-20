@@ -58,7 +58,7 @@ function TeacherCourses() {
                                 <tbody>
                                     {courseData.map((course,index)=>
                                     <tr>
-                                        <td> <Link to={'/course-chapters/'+course_id}>{course.title}</Link></td>
+                                        <td> <Link to={'/course-chapters/'+course.id}>{course.title}</Link></td>
                                         <td><img src={course.image} width='80' className='rounded' alt='{course.title}'/></td>
                                         <td><Link to="/">256</Link></td>
                                         <td>

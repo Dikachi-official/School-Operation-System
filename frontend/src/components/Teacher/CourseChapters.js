@@ -9,14 +9,16 @@ import axios from 'axios';
 const baseUrl='http://127.0.0.1:8000/api';
 function CourseChapters() {
     const [chapterData, setChapterData]=useState([]);
+    const [totalResult, settotalResult]=useState(0);
     const {course_id}=useParams()
 
 
     //Fetch courses after page refresh
     useEffect(()=>{
         try{
-            axios.get(baseUrl+'/course-chapter/1')
+            axios.get(baseUrl+'/course-chapter/'+course_id)
             .then((res)=>{
+                settotalResult(res.data.length);
                 setChapterData(res.data);
 
             });
@@ -27,6 +29,18 @@ function CourseChapters() {
         // Course title on react page
         document.title='Course Chapters'
     }, []);
+
+    // Delete Data
+    const Swal = require('sweetalert2');
+    const handleDeleteClick = ()=>{
+        Swal.fire({
+            title: 'Confirm',
+            text: 'Are you sure you want to delete this data',
+            icon: 'info',
+            confirmButtonText: 'Continue',
+            showCancelButton: true
+        });
+    }
 
 
 
@@ -39,7 +53,7 @@ function CourseChapters() {
                 </aside>
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>All Chapters</h5>
+                        <h5 className='card-header'>All Chapters ({totalResult})</h5>
                         <div className='card-body'>
                             <table className='table table-bordered'>
                                 <thead>
@@ -53,7 +67,7 @@ function CourseChapters() {
                                 <tbody>
                                     {chapterData.map((chapter,index)=>
                                     <tr>
-                                        <td> <Link to="#">{chapter.title}</Link></td>
+                                        <td> <Link to={'/edit-chapter/'+chapter.id}>{chapter.title}</Link></td>
                                         <td>
                                             <video controls width="200">
                                                 <source src={chapter.video.url} type="video/webm"/>
@@ -64,9 +78,8 @@ function CourseChapters() {
                                         </td>
                                         <td>{chapter.remarks}</td>
                                         <td>
-                                            <button className='btn btn-danger btn-sm'>Delete</button>
-                                            <button className='btn btn-info ms-1'>Edit</button>
-                                            
+                                            <Link to={'/edit-chapter/'+chapter.id} className='btn btn-info btn-sm ms-1 text-white'><i className='bi bi-pencil-square'></i></Link>
+                                            <button onClick={handleDeleteClick} to={'/delete-chapter/'+chapter.id} className='btn btn-danger btn-sm ms-1'><i className='bi bi-trash'></i></button>        
                                         </td>
                                     </tr>
                                     )}
