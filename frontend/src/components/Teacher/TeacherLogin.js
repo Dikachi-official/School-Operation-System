@@ -61,6 +61,12 @@ function TeacherLogin() {
         document.title='Teacher Login'
     });
 
+    const handleSubmit = async e => {   //handleSubmiting of the form
+        e.preventDefault()   //Preventpage refresh
+      }
+
+
+
 
   return (
     <div className="container mt-5 mb-5">
@@ -70,7 +76,7 @@ function TeacherLogin() {
                     <h3 className="card-header">Teacher Login</h3>
                     <div className='card-body'>
                         {errorMsg && <p className='text danger'>{errorMsg}</p>}
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">
                                     Email address

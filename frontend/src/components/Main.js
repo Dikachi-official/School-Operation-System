@@ -38,6 +38,7 @@ import TeacherDetail from './Teacher/TeacherDetail';
 import AddChapter from './Teacher/AddChapter';
 import CourseChapters from './Teacher/CourseChapters';
 import AllChapters from './Teacher/AllChapters';
+import EditChapter from './Teacher/EditChapter';
 
 
 //OTHER ROUTES
@@ -84,6 +85,7 @@ function Main(){
                     <Route path="/teacher-detail/:teacher_id" component={TeacherDetail} />
                     <Route path="/add-chapter/:course_id" component={AddChapter} />
                     <Route path="/all-chapters" component={AllChapters} />
+                    <Route path="/edit-chapter/:chapter_id" component={EditChapter} />
                     <Route path="/course-chapters/:course_id" component={CourseChapters} />
 
 

@@ -30,15 +30,38 @@ function CourseChapters() {
         document.title='Course Chapters'
     }, []);
 
-    // Delete Data
+    // Delete Data with sweetalert2
     const Swal = require('sweetalert2');
-    const handleDeleteClick = ()=>{
+    const handleDeleteClick = (chapter_id)=>{
         Swal.fire({
             title: 'Confirm',
             text: 'Are you sure you want to delete this data',
             icon: 'info',
             confirmButtonText: 'Continue',
             showCancelButton: true
+        }).then((result)=>{
+            if (result.isConfirmed){
+                try{
+                    axios.delete(baseUrl+'/chapter/'+chapter_id)
+                    .then((res)=>{
+                        Swal.fire('success', 'Data has been deleted'); //To Prevent page refresh
+                        try{
+                            axios.get(baseUrl+'/course-chapter/'+course_id)
+                            .then((res)=>{
+                                settotalResult(res.data.length);
+                                setChapterData(res.data);
+                
+                            });
+                        }catch(error){
+                            console.log(error);
+                        }
+                    });
+                }catch(error){
+                    Swal.fire('error', 'Data has not been deleted');
+                }
+            }else{
+                Swal.fire('error', 'Data has not been deleted');
+            }
         });
     }
 
@@ -79,7 +102,7 @@ function CourseChapters() {
                                         <td>{chapter.remarks}</td>
                                         <td>
                                             <Link to={'/edit-chapter/'+chapter.id} className='btn btn-info btn-sm ms-1 text-white'><i className='bi bi-pencil-square'></i></Link>
-                                            <button onClick={handleDeleteClick} to={'/delete-chapter/'+chapter.id} className='btn btn-danger btn-sm ms-1'><i className='bi bi-trash'></i></button>        
+                                            <button onClick={()=>handleDeleteClick(chapter.id)} to={'/delete-chapter/'+chapter.id} className='btn btn-danger btn-sm ms-1'><i className='bi bi-trash'></i></button>        
                                         </td>
                                     </tr>
                                     )}

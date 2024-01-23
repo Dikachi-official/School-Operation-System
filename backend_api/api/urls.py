@@ -14,6 +14,9 @@ urlpatterns = [
     # All Chapters
     path('chapter/', views.ChapterList.as_view()),
 
+    # Specific Chapters
+    path('chapter/<int:pk>', views.ChapterDetailView.as_view()),
+
     # Specific course Chapter
     path('course-chapter/<int:course_id>', views.CourseChapterList.as_view()),
 ]

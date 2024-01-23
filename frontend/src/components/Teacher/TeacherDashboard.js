@@ -20,6 +20,7 @@ function TeacherDashboard() {
                 <section className='col-md-9'>
                     Dashboard
                 </section>
+                <hr/>
             </div>
         </div>
     )

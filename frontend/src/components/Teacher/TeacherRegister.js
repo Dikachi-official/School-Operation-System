@@ -72,6 +72,10 @@ function TeacherRegister() {
     document.title='Teacher Register'
   });
 
+  const handleSubmit = async e => {   //handleSubmiting of the form
+    e.preventDefault()   //Preventpage refresh
+  }
+
 
 
   return (
@@ -84,7 +88,7 @@ function TeacherRegister() {
                     <h3 className="card-header">Teacher Register</h3>
                     <div className='card-body'>
                       
-                      <form>
+                      <form onSubmit={handleSubmit}>
 
                         <div className="mb-3">
                           <label htmlFor="exampleInputEmail1" className="form-label">

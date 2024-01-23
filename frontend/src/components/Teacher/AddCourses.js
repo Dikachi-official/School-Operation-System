@@ -86,7 +86,7 @@ function AddCourses() {
 
 
     return (
-        <div className='container mt-4'>
+        <div className='container mt-4 mb-4'>
             <div className='row'>
                 <aside className='col-md-3'>
                     <TeacherSidebar/>
