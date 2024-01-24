@@ -20,7 +20,6 @@ class TeacherList(generics.ListCreateAPIView):
     #permission_classes = [permissions.IsAuthenticated]
 
 
-
 class TeacherDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer

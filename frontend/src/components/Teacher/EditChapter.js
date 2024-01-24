@@ -40,7 +40,7 @@ function EditChapter() {
         });
     }
 
-    const {chapter_id}=useParams();
+    const {chapter_id}=useParams();  // Based on what u passed in its respective route
 
     //Submit Form
     const formSubmit=()=>{

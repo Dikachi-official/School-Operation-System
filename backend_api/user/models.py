@@ -63,6 +63,7 @@ class Student(models.Model):
 # Teacher Model
 class Teacher(models.Model):
     full_name = models.CharField(max_length=150)
+    bio = models.TextField(null=True)
     email = models.EmailField()
     password = models.CharField(max_length=150)
     qualification = models.CharField(max_length=200)
@@ -74,3 +75,7 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.full_name
+    
+    def skill_list(self):
+        skill_list=self.skills.split(",")
+        return skill_list

@@ -8,15 +8,15 @@ import axios from 'axios';
 
 const baseUrl='http://127.0.0.1:8000/api';
 
-function CategoryCourses() {
+function TeacherSkillCourses() {
     
     const [courseData, setCourseData]=useState([]);
-    const {category_slug}=useParams()
+    const {skill_name, teacher_id}=useParams()
 
     //Fetch courses after page refresh
     useEffect(()=>{
         try{
-            axios.get(baseUrl+'/course/?category='+category_slug)
+            axios.get(baseUrl+'/course/?skill_name='+skill_name+'&teacher='+teacher_id)
             .then((res)=>{
                 setCourseData(res.data);
 
@@ -25,10 +25,8 @@ function CategoryCourses() {
             console.log(error);
         }
 
-
-
         // Course title on react page
-        document.title='Category Courses'
+        document.title='TeacherSkillCourses'
     }, []);
 
 
@@ -39,7 +37,7 @@ function CategoryCourses() {
     <div className='container mt-3' >
         <h3>All courses</h3>
         {/*=== LATEST COURSES ===*/}
-        <h3 className='pb-1 mb-4 mt-4 text-start'>{category_slug}  <Link to="" className="ml-7">See All...</Link></h3>
+        <h3 className='pb-1 mb-4 mt-4 text-start'>{skill_name}  <Link to="" className="ml-7">See All...</Link></h3>
             <div className='row p-2'>
                 {courseData && courseData.map((course,index)=>
                 <div className='col-md-3 p-2'>
@@ -61,4 +59,4 @@ function CategoryCourses() {
   )
 }
 
-export default CategoryCourses;
+export default TeacherSkillCourses;

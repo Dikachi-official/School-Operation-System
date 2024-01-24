@@ -31,6 +31,7 @@ import TeacherRegister from './Teacher/TeacherRegister';
 import TeacherDashboard from './Teacher/TeacherDashboard';
 import TeacherCourses from './Teacher/TeacherCourses';
 import AddCourses from './Teacher/AddCourses';
+import EditCourse from './Teacher/EditCourse';
 import MyStudents from './Teacher/MyStudents';
 import TeacherProfileSetting from './Teacher/TeacherProfileSetting';
 import TeacherChangePassword from './Teacher/TeacherChangePassword';
@@ -39,6 +40,8 @@ import AddChapter from './Teacher/AddChapter';
 import CourseChapters from './Teacher/CourseChapters';
 import AllChapters from './Teacher/AllChapters';
 import EditChapter from './Teacher/EditChapter';
+import TeacherSkillCourses from './Teacher/TeacherSkillCourses';
+
 
 
 //OTHER ROUTES
@@ -79,6 +82,7 @@ function Main(){
                     <Route path="/teacher-dashboard" component={TeacherDashboard} />
                     <Route path="/teacher-courses" component={TeacherCourses} />
                     <Route path="/add-courses" component={AddCourses} />
+                    <Route path="/edit-course/:course_id" component={EditCourse} />
                     <Route path="/my-students" component={MyStudents} />
                     <Route path="/teacher-profile-setting" component={TeacherProfileSetting} />
                     <Route path="/teacher-change-password" component={TeacherChangePassword} />
@@ -87,6 +91,9 @@ function Main(){
                     <Route path="/all-chapters" component={AllChapters} />
                     <Route path="/edit-chapter/:chapter_id" component={EditChapter} />
                     <Route path="/course-chapters/:course_id" component={CourseChapters} />
+                    <Route path="/teacher-skill-courses/:skill_name/:teacher_id" component={TeacherSkillCourses} />
+                    
+
 
 
 
