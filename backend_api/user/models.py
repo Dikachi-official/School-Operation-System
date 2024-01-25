@@ -47,9 +47,8 @@ class Student(models.Model):
     full_name = models.CharField(max_length=150)
     email = models.EmailField()
     password = models.CharField(max_length=150)
-    qualification = models.CharField(max_length=200)
+    username = models.CharField(max_length=200)
     mobile_no = models.IntegerField()
-    address = models.CharField(max_length=200)
     interested_categories = models.TextField()
 
     USERNAME_FIELD = 'email'

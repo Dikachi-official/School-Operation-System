@@ -83,7 +83,7 @@ function TeacherRegister() {
         <div className="row">
             <div className="col-6 offset-3">
                 {teacherData.status==='success' && <p className="text-success m-2">Thanks for your registration</p>}
-                {teacherData.status==='error' && <p className="text-success m-2">Something wrong happened</p>}
+                {teacherData.status==='error' && <p className="text-danger m-2">Something wrong happened</p>}
                 <div className="card">
                     <h3 className="card-header">Teacher Register</h3>
                     <div className='card-body'>

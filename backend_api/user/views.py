@@ -14,6 +14,20 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+
+##### STUDENT DATA
+class StudentList(generics.ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+
+
+
+
+
+
+##### TEACHER DATA
 class TeacherList(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer

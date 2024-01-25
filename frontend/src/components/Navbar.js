@@ -87,7 +87,7 @@ function Navbar(){
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                 >
-                                    User
+                                    Student
                                 </Link>
                                 <ul
                                     className="dropdown-menu"
