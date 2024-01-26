@@ -15,6 +15,7 @@ import CourseDetail from './CourseDetail';
 
 // USER ROUTE
 import Login from './User/Login';
+import StudentLogout from './User/StudentLogout';
 import Register from './User/Register';
 import Dashboard from './User/Dashboard';
 import MyCourses from './User/MyCourses';
@@ -65,7 +66,8 @@ function Main(){
                     <Route path="/" exact component={Home} />
                     <Route path="/about" component={About} />
                     <Route path="/detail/:course_id" component={CourseDetail} />
-                    <Route path="/user-login" component={Login} />
+                    <Route path="/student-login" component={Login} />
+                    <Route path="/student-logout" component={StudentLogout} />
                     <Route path="/user-register" component={Register} />
                     <Route path="/user-dashboard" component={Dashboard} />
                     <Route path="/my-courses" component={MyCourses} />

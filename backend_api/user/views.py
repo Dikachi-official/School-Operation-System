@@ -15,19 +15,42 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-##### STUDENT DATA
+##### STUDENT DATA  ##### STUDENT DATA
+##### STUDENT DATA  ##### STUDENT DATA
 class StudentList(generics.ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     #permission_classes = [permissions.IsAuthenticated]
 
+class StudentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+
+@csrf_exempt
+def student_login(request):
+    email=request.POST['email']
+    password=request.POST['password']
+    try:
+        studentData = Student.objects.get(email=email, password=password)
+    except Student.models.DoesNotExist:
+        studentData=None
+
+
+    if studentData:
+        return JsonResponse({'bool' : True, 'student_id':studentData.id})
+    else:
+        return JsonResponse({'bool' : False})
+    
 
 
 
 
 
 
-##### TEACHER DATA
+##### TEACHER DATA  ##### TEACHER DATA
+##### TEACHER DATA  ##### TEACHER DATA
 class TeacherList(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 
 function Navbar(){
+    const studentLoginStatus=localStorage.getItem('studentLoginStatus')
     const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
 
 
@@ -93,23 +94,27 @@ function Navbar(){
                                     className="dropdown-menu"
                                     aria-labelledby="navbarDropdownMenuLink"
                                 >
-                                    <li>
-                                        <Link to="/user-register" className="dropdown-item" >
-                                            Register
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/user-login" className="dropdown-item" >
-                                            Login
-                                        </Link>
-                                    </li>
+                                    {studentLoginStatus!=='true' &&
+                                        <>
+                                        <li>
+                                            <Link to="/user-register" className="dropdown-item" >
+                                                Register
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/student-login" className="dropdown-item" >
+                                                Login
+                                            </Link>
+                                        </li>
+                                        </>
+                                    }
                                     <li>
                                         <Link to="/user-dashboard" className="dropdown-item" >
                                             Dashboard
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="" className="dropdown-item" >
+                                        <Link to="/student-logout" className="dropdown-item" >
                                             Logout
                                         </Link>
                                     </li>
