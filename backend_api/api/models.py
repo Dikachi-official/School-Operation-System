@@ -51,3 +51,17 @@ class Chapter(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class StudentCourseEnrollment(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrolled_courses')
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrolled_students')
+    enrolled_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Student Course Enrollment'
+
+
+    def __str__(self):
+        return f"{self.course.title} - {self.student}"

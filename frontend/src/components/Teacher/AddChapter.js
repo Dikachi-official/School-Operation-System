@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 
@@ -61,7 +62,19 @@ function AddChapter() {
             })
             .then((res)=>{
                 //console.log(res.data)
-                window.location.href='/add-chapter/1';
+
+                if (res.status==200||res.status==201){
+                    Swal.fire({
+                        title: 'Data has been uploaded',
+                        icon: 'success',
+                        toast: true,
+                        timer: 3000,
+                        position: 'top-right',
+                        timerProgressBar: true,
+                        showConfirmButton: false
+                    });
+                    window.location.reload();
+                }
             });
         }
         catch(error){

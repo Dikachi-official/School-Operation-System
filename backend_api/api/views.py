@@ -87,6 +87,7 @@ class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+##### COURSE CHAPTER
 class CourseChapterList(generics.ListAPIView):
     serializer_class = ChapterSerializer
     #permission_classes = [permissions.IsAuthenticated]
@@ -95,4 +96,26 @@ class CourseChapterList(generics.ListAPIView):
         course_id = self.kwargs['course_id']
         course = Course.objects.get(pk=course_id)
         return Chapter.objects.filter(course=course)
+    
+
+
+
+
+##### STUDENT COURSE VIEW
+class StudentEnrollCourseList(generics.ListCreateAPIView):
+    queryset = StudentCourseEnrollment.objects.all()
+    serializer_class = StudentCourseEnrollSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+
+@csrf_exempt
+def fetch_enroll_status(request, student_id, course_id):
+    student = Student.objects.filter(id=student_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    enrolled_status = StudentCourseEnrollment.objects.filter(course=course, student=student).count()
+
+    if enrolled_status:
+        return JsonResponse({'bool' : True})
+    else:
+        return JsonResponse({'bool' : False})
 

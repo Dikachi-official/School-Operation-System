@@ -13,7 +13,7 @@ urlpatterns = [
     path('course/<int:pk>', views.CourseDetailView.as_view()),
 
 
-    ### TEACHER
+    ### TEACHER  COURSE
     # Specific teacher course list
     path('teacher-courses/<int:teacher_id>', views.TeacherCourseList.as_view()),
     # Specific teacher course detail
@@ -27,4 +27,12 @@ urlpatterns = [
     path('chapter/<int:pk>', views.ChapterDetailView.as_view()),
     # Specific course Chapter
     path('course-chapter/<int:course_id>', views.CourseChapterList.as_view()),
+
+
+
+    ### STUDENT ENROLLED COURSE
+    path('student-enroll-course/', views.StudentEnrollCourseList.as_view()),
+    # get status of enrolled students
+    path('fetch-enroll-status/<int:student_id>/<int:course_id>', views.fetch_enroll_status),
+
 ]
