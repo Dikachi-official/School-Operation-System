@@ -49,6 +49,7 @@ import TeacherSkillCourses from './Teacher/TeacherSkillCourses';
 import PopularCourses from './PopularCourses';
 import CategoryCourses from './CategoryCourses';
 import AllTeachers from './AllTeachers';
+import EnrolledStudents from './EnrolledStudents';
 
 
 
@@ -100,6 +101,7 @@ function Main(){
 
 
                     {/*=== OTHER ROUTES === */}
+                    <Route path="/enrolled-students/:course_id" component={EnrolledStudents} />
                     <Route path="/all-courses" component={AllCourses} />
                     <Route path="/popular-courses" component={PopularCourses} />
                     <Route path="/all-teachers" component={AllTeachers} />
