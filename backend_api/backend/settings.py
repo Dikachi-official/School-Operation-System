@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     #'jazzmin',
 
     #Custom Apps
-    'api', 
+    'API', 
     'user',
 
     #API dependencies

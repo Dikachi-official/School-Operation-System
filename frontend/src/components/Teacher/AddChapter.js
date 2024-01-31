@@ -25,6 +25,9 @@ function AddChapter() {
         document.title='Add Chapters'
     },[]);
 
+    
+    const [videoDuration, setvideoDuration]=useState();
+
 
 
     // Change in Input

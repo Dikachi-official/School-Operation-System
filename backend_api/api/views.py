@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .serializers import *
 from .models import *
+from django.db.models import Q
+from user.models import *
 
 # DRF IMPORTS
 from rest_framework.views import APIView
@@ -42,6 +44,18 @@ class CourseList(generics.ListCreateAPIView):
             teacher=self.request.GET['teacher']
             teacher=Teacher.objects.filter(id=teacher).first()
             qs=Course.objects.filter(technologies__icontains=skill_name,teacher=teacher)
+
+        # Recommended Courses
+        elif 'studentId' in self.kwargs:
+            student_id = self.kwargs['studentId']
+            student = Student.objects.get(pk=student_id)
+            print(student.interested_categories)
+            queries = [Q(technologies__iendswith=value) for value in student.interested_categories]
+            query = queries.pop()
+            for item in queries:
+                query |= item
+            qs = Course.objects.filter(query)
+            return qs
 
         return qs
     
@@ -120,14 +134,74 @@ def fetch_enroll_status(request, student_id, course_id):
         return JsonResponse({'bool' : False})
     
 
-# Get list f enrolled students in a course
+# Get list of enrolled students in a course
 class EnrolledStudentsList(generics.ListAPIView):
     queryset = StudentCourseEnrollment.objects.all()
     serializer_class = StudentCourseEnrollSerializer
     #permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        course_id = self.kwargs['course_id']
-        course = Course.objects.get(pk=course_id)
-        return StudentCourseEnrollment.objects.filter(course=course)
+        if 'course_id' in self.kwargs:
+            course_id = self.kwargs['course_id']
+            course = Course.objects.get(pk=course_id)
+            return StudentCourseEnrollment.objects.filter(course=course)
+        elif 'teacher_id' in self.kwargs:
+            teacher_id = self.kwargs['teacher_id']
+            teacher = Teacher.objects.get(pk=teacher_id)
+            return StudentCourseEnrollment.objects.filter(course__teacher=teacher).distinct() # at postgress deploy use ".distinct('id)"
+       
+        # get list of enrolled courses per student in "student-course page -My courses"
+        elif 'student_id' in self.kwargs:
+            student_id = self.kwargs['student_id']
+            student = Student.objects.get(pk=student_id)
+            return StudentCourseEnrollment.objects.filter(student = student).distinct()
+
+
+
+##### COURSE RATING VIEW
+class CourseRatingList(generics.ListCreateAPIView):
+    queryset = CourseRating.objects.all()
+    serializer_class = CourseRatingSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+
+
+### FETCH RATING STATUS OF ENROLLED STUDENTS
+@csrf_exempt
+def fetch_rating_status(request, student_id, course_id):
+    student = Student.objects.filter(id=student_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    rating_status = CourseRating.objects.filter(course=course, student=student).count()
+
+    if rating_status:
+        return JsonResponse({'bool' : True})
+    else:
+        return JsonResponse({'bool' : False})
+    
+
+
+
+
+### ADD/REMOVE STUDENT FAVORITE COURSE
+class StudentFavoriteCourseList(generics.ListCreateAPIView):
+    queryset = StudentFavoriteCourse.objects.all()
+    serializer_class = StudentFavoriteCourseSerializer
+
+def fetch_favorite_status(request,student_id,course_id):
+    student = Student.objects.filter(id=student_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    favoriteStatus = StudentFavoriteCourse.objects.filter(course=course, student=student).first()
+    if favoriteStatus and favoriteStatus.status == True:
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool': False})
+
+def remove_favorite_course(request, course_id, student_id):
+    student = Student.objects.filter(id=student_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    favoriteStatus = StudentFavoriteCourse.objects.filter(course=course, student=student).delete()
+    if favoriteStatus:
+        return JsonResponse({'bool': True})
+    else:
+        return JsonResponse({'bool': False})
 

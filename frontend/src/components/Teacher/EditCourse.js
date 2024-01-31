@@ -92,6 +92,8 @@ function EditCourse() {
         }
         _formData.append("technologies", courseData.technologies)
         
+
+        // "put" new data back to the api
         try{
             axios.put(baseUrl+'/teacher-course-detail/'+course_id,_formData,{
                 headers: {

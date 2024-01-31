@@ -1,14 +1,36 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { useEffect } from 'react';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 
 
+
+
+const baseUrl='http://127.0.0.1:8000/api';
 
 function MyCourses() {
+    const [courseData, setCourseData]=useState([]);
+
+    const studentId=localStorage.getItem('studentId');
+    console.log(studentId)
+    // Fetch all students courses for student
     useEffect(()=>{
+        try{
+            axios.get(baseUrl+'/fetch-enrolled-courses/'+studentId+'/')
+            .then((res)=>{
+                setCourseData(res.data);
+
+            });
+        }catch(error){
+            console.log(error);
+        }
+
+
         document.title='My Courses'
-    });
+    }, []);
+
+    console.log(courseData);
 
 
     return (
@@ -30,11 +52,13 @@ function MyCourses() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td> Python Development</td>
-                                    <td><Link to="/">Prof Ovat</Link></td>
-                                    <td>
-                                        <button className='btn btn-danger btn-sm active'>Delete</button>
-                                    </td>
+                                    {courseData.map((row,index)=> 
+                                    <tr>
+                                    
+                                        <td><Link to={'/detail/'+row.course.id}>{row.course.title}</Link></td>
+                                        <td><Link to=''></Link>{row.course.teacher.full_name}</td>
+                                    </tr>
+                                    )}
                                 </tbody>
                             </table>
                         </div>

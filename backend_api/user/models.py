@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.signals import post_save
+from API.models import *
 #from django.contrib.auth.models import AbstractUser
 
 
@@ -64,7 +65,8 @@ class Teacher(models.Model):
     full_name = models.CharField(max_length=150)
     bio = models.TextField(null=True)
     email = models.EmailField()
-    password = models.CharField(max_length=150)
+    profile_img = models.ImageField(upload_to='teacher_profile_imgs', null=True)
+    password = models.CharField(max_length=150, null=True, blank=True)
     qualification = models.CharField(max_length=200)
     mobile_no = models.IntegerField()
     skills = models.TextField(default="Engineering")
@@ -78,3 +80,18 @@ class Teacher(models.Model):
     def skill_list(self):
         skill_list=self.skills.split(",")
         return skill_list
+    
+    # Total Teacher Courses
+    def total_teacher_courses(self):
+        total_courses = Course.objects.filter(teacher__full_name=self.full_name).count()
+        return total_courses
+    
+    # Total Teacher Chapters
+    def total_teacher_chapters(self):
+        total_chapters = Chapter.objects.filter(course__teacher=self).count()
+        return total_chapters
+    
+    # Total Teacher Students
+    def total_teacher_students(self):
+        total_students = StudentCourseEnrollment.objects.filter(course__teacher=self).count()
+        return total_students        

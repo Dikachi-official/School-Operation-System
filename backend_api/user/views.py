@@ -63,7 +63,7 @@ class TeacherDetail(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = [permissions.IsAuthenticated]
 
 
-
+# Teacher Login func
 @csrf_exempt
 def teacher_login(request):
     email=request.POST['email']
@@ -78,3 +78,26 @@ def teacher_login(request):
         return JsonResponse({'bool' : True, 'teacher_id':teacherData.id})
     else:
         return JsonResponse({'bool' : False})
+    
+
+# Teacher Change password Func
+@csrf_exempt
+def teacher_change_password(request, teacher_id):
+    password=request.POST['password']
+    try:
+        teacherData = Teacher.objects.get(id=teacher_id)
+    except Teacher.models.DoesNotExist:
+        teacherData=None
+
+
+    if teacherData:
+        Teacher.objects.filter(id=teacher_id).update(password=password)
+        return JsonResponse({'bool' : True})
+    else:
+        return JsonResponse({'bool' : False})
+    
+
+# Teacher Dashboard 
+class TeacherDashboard(generics.RetrieveAPIView):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherDashboardSerializer

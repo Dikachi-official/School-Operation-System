@@ -12,5 +12,10 @@ urlpatterns = [
     #### TEACHER
     path('teachers/', views.TeacherList.as_view()),
     path('teacher/<int:pk>/', views.TeacherDetail.as_view()),
+    # Teacher change password
+    path('teacher/change-password/<int:teacher_id>/', views.teacher_change_password),
+    # Teacher Login
     path('teacher-login/', views.teacher_login, name='teacher-login'),
+    # Teacher Dashboard
+    path('teacher/dashboard/<int:pk>', views.TeacherDashboard.as_view()),
 ]
