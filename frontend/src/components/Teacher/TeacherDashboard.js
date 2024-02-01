@@ -11,7 +11,7 @@ const baseUrl='http://127.0.0.1:8000/user';
 
 function TeacherDashboard() {
     const [dashboardData, setdashboardData]=useState([]);
-    const teacherId=localStorage.getItem['teacherId']
+    const teacherId=localStorage.getItem('teacherId');
 
 
     useEffect(()=>{

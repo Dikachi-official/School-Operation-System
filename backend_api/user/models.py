@@ -83,15 +83,18 @@ class Teacher(models.Model):
     
     # Total Teacher Courses
     def total_teacher_courses(self):
+        from API.models import Course
         total_courses = Course.objects.filter(teacher__full_name=self.full_name).count()
         return total_courses
     
     # Total Teacher Chapters
     def total_teacher_chapters(self):
+        from API.models import Chapter
         total_chapters = Chapter.objects.filter(course__teacher=self).count()
         return total_chapters
     
     # Total Teacher Students
     def total_teacher_students(self):
+        from API.models import StudentCourseEnrollment
         total_students = StudentCourseEnrollment.objects.filter(course__teacher=self).count()
         return total_students        
