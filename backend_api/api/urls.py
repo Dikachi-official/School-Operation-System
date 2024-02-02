@@ -65,4 +65,7 @@ urlpatterns = [
     path('student-add-favorite-course/', views.StudentFavoriteCourseList.as_view()),
     path('student-remove-favorite-course/<int:course_id>/<int:student_id>', views.remove_favorite_course),
     path('fetch-favorite-status/<int:student_id>/<int:course_id>', views.fetch_favorite_status),
+
+        # get list of favorite courses per student in "student-course page"
+    path('fetch-favorite-courses/<int:student_id>/', views.StudentFavoriteCourseList.as_view()),
 ]

@@ -187,6 +187,14 @@ class StudentFavoriteCourseList(generics.ListCreateAPIView):
     queryset = StudentFavoriteCourse.objects.all()
     serializer_class = StudentFavoriteCourseSerializer
 
+    def get_queryset(self):
+
+        # get list of enrolled courses per student in "student-course page -My courses"
+        if 'student_id' in self.kwargs:
+            student_id = self.kwargs['student_id']
+            student = Student.objects.get(pk=student_id)
+            return StudentFavoriteCourse.objects.filter(student = student).distinct()
+
 def fetch_favorite_status(request,student_id,course_id):
     student = Student.objects.filter(id=student_id).first()
     course = Course.objects.filter(id=course_id).first()
