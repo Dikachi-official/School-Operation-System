@@ -46,11 +46,13 @@ import AddAssignment from './Teacher/AddAssignment';
 
 
 
+
 //OTHER ROUTES
 import PopularCourses from './PopularCourses';
 import CategoryCourses from './CategoryCourses';
 import AllTeachers from './AllTeachers';
 import EnrolledStudents from './EnrolledStudents';
+import ShowAssignment from './Teacher/ShowAssignment';
 
 
 
@@ -90,6 +92,7 @@ function Main(){
                     <Route path="/edit-course/:course_id" component={EditCourse} />
                     <Route path="/my-students" component={MyStudents} />
                     <Route path="/add-assignment/:student_id/:teacher_id" component={AddAssignment} />
+                    <Route path="/show-assignment/:student_id/:teacher_id" component={ShowAssignment} />
                     <Route path="/teacher-profile-setting" component={TeacherProfileSetting} />
                     <Route path="/teacher-change-password" component={TeacherChangePassword} />
                     <Route path="/teacher-detail/:teacher_id" component={TeacherDetail} />
