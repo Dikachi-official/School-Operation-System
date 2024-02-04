@@ -19,6 +19,7 @@ import StudentLogout from './User/StudentLogout';
 import Register from './User/Register';
 import Dashboard from './User/Dashboard';
 import MyCourses from './User/MyCourses';
+import StudentAssignments from './User/StudentAssignments';
 import FavoriteCourses from './User/FavouriteCourses';
 import RecommendedCourses from './User/RecommendedCourses';
 import ProfileSetting from './User/ProfileSetting';
@@ -76,6 +77,7 @@ function Main(){
                     <Route path="/user-register" component={Register} />
                     <Route path="/user-dashboard" component={Dashboard} />
                     <Route path="/my-courses" component={MyCourses} />
+                    <Route path="/my-assignments/" component={StudentAssignments} />
                     <Route path="/favorite-courses" component={FavoriteCourses} />
                     <Route path="/recommended-courses" component={RecommendedCourses} />
                     <Route path="/profile-setting" component={ProfileSetting} />

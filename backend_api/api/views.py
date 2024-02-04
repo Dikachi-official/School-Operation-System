@@ -228,3 +228,16 @@ class AssignmentList(generics.ListCreateAPIView):
         teacher = Teacher.objects.get(pk=teacher_id)
         return StudentAssignment.objects.filter(student=student, teacher=teacher)
     
+
+
+# Fetch all assignments related to a student
+class MyAssignmentList(generics.ListCreateAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        student_id = self.kwargs['student_id']
+        student = Student.objects.get(pk=student_id)
+        return StudentAssignment.objects.filter(student=student)
+    

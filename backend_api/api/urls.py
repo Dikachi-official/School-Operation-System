@@ -71,6 +71,9 @@ urlpatterns = [
 
 
 
-    # STUDENT ASSIGNMENT(TECAHER DASHBOARD)
+    # STUDENT ASSIGNMENT(TEACHER DASHBOARD)
     path('student-assignment/<int:teacher_id>/<int:student_id>/', views.AssignmentList.as_view()),
+
+    # STUDENT ASSIGNMENT(STUDENT DASHBOARD)
+    path('my-assignments/<int:student_id>/', views.MyAssignmentList.as_view()),
 ]
