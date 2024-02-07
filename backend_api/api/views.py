@@ -241,3 +241,11 @@ class MyAssignmentList(generics.ListCreateAPIView):
         student = Student.objects.get(pk=student_id)
         return StudentAssignment.objects.filter(student=student)
     
+
+# Fetch update all assignments related to a student
+class UpdateAssignment(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+    

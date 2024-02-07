@@ -92,7 +92,7 @@ class CourseRatingSerializer(serializers.ModelSerializer):
 class StudentAssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentAssignment
-        fields = ['id', 'student', 'title', 'detail', 'teacher', 'add_time']
+        fields = ['id', 'student', 'title', 'detail', 'student_status', 'teacher', 'add_time']
     
     '''
     USE THIS WHEN HAVING "FOREIGN KEY" OBJECTS IN THE ABOVE MODEL
