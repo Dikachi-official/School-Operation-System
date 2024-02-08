@@ -212,4 +212,19 @@ def remove_favorite_course(request, course_id, student_id):
         return JsonResponse({'bool': True})
     else:
         return JsonResponse({'bool': False})
+    
 
+
+# Fetch all assignments related to a student
+class AssignmentList(generics.ListCreateAPIView):
+    queryset = StudentAssignment.objects.all()
+    serializer_class = StudentAssignmentSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        student_id = self.kwargs['student_id']
+        teacher_id = self.kwargs['teacher_id']
+        student = Student.objects.get(pk=student_id)
+        teacher = Teacher.objects.get(pk=teacher_id)
+        return StudentAssignment.objects.filter(student=student, teacher=teacher)
+    

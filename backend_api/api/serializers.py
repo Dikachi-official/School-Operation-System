@@ -31,7 +31,13 @@ class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
         fields = ['id', 'title', 'description', 'video', 'remarks']
-
+    
+    def __init__(self, *args, **kwargs):
+        super(StudentCourseEnrollSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 1
 
 
 
@@ -81,3 +87,20 @@ class CourseRatingSerializer(serializers.ModelSerializer):
         self.Meta.depth = 0
         if request and request.method == 'GET':
             self.Meta.depth = 1
+
+
+class StudentAssignmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentAssignment
+        fields = ['id', 'student', 'title', 'detail', 'teacher', 'add_time']
+    
+    '''
+    USE THIS WHEN HAVING "FOREIGN KEY" OBJECTS IN THE ABOVE MODEL
+        INSTEAD OF "DEPTH" WHICH IS READONLY
+    '''
+    def __init__(self, *args, **kwargs):
+        super(StudentAssignmentSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 2

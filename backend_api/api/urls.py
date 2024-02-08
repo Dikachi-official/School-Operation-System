@@ -68,4 +68,9 @@ urlpatterns = [
 
         # get list of favorite courses per student in "student-course page"
     path('fetch-favorite-courses/<int:student_id>/', views.StudentFavoriteCourseList.as_view()),
+
+
+
+    # STUDENT ASSIGNMENT(TECAHER DASHBOARD)
+    path('student-assignment/<int:teacher_id>/<int:student_id>/', views.AssignmentList.as_view()),
 ]

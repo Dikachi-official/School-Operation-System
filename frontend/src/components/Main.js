@@ -42,6 +42,7 @@ import CourseChapters from './Teacher/CourseChapters';
 import AllChapters from './Teacher/AllChapters';
 import EditChapter from './Teacher/EditChapter';
 import TeacherSkillCourses from './Teacher/TeacherSkillCourses';
+import AddAssignment from './Teacher/AddAssignment';
 
 
 
@@ -50,6 +51,7 @@ import PopularCourses from './PopularCourses';
 import CategoryCourses from './CategoryCourses';
 import AllTeachers from './AllTeachers';
 import EnrolledStudents from './EnrolledStudents';
+
 
 
 
@@ -87,6 +89,7 @@ function Main(){
                     <Route path="/add-courses" component={AddCourses} />
                     <Route path="/edit-course/:course_id" component={EditCourse} />
                     <Route path="/my-students" component={MyStudents} />
+                    <Route path="/add-assignment/:student_id/:teacher_id" component={AddAssignment} />
                     <Route path="/teacher-profile-setting" component={TeacherProfileSetting} />
                     <Route path="/teacher-change-password" component={TeacherChangePassword} />
                     <Route path="/teacher-detail/:teacher_id" component={TeacherDetail} />
