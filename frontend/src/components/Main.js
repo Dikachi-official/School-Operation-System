@@ -23,7 +23,7 @@ import StudentAssignments from './User/StudentAssignments';
 import FavoriteCourses from './User/FavouriteCourses';
 import RecommendedCourses from './User/RecommendedCourses';
 import ProfileSetting from './User/ProfileSetting';
-import ChangePassword from './User/ChangePassword';
+import StudentChangePassword from './User/StudentChangePassword';
 
 
 // TEACHER ROUTE
@@ -81,7 +81,7 @@ function Main(){
                     <Route path="/favorite-courses" component={FavoriteCourses} />
                     <Route path="/recommended-courses" component={RecommendedCourses} />
                     <Route path="/profile-setting" component={ProfileSetting} />
-                    <Route path="/change-password" component={ChangePassword} />
+                    <Route path="/student-change-password" component={StudentChangePassword} />
 
 
                     {/* === TEACHER ROUTE ==== */}

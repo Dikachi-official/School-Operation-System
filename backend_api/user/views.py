@@ -44,11 +44,29 @@ def student_login(request):
         return JsonResponse({'bool' : False})
     
 
+# Student Change password Func
+@csrf_exempt
+def student_change_password(request, student_id):
+    password=request.POST['password']
+    try:
+        studentData = Student.objects.get(id=student_id)
+    except Student.models.DoesNotExist:
+        studentData=None
+
+
+    if studentData:
+        Student.objects.filter(id=student_id).update(password=password)
+        return JsonResponse({'bool' : True})
+    else:
+        return JsonResponse({'bool' : False})
+    
+
 # Student Dashboard 
 class StudentDashboard(generics.RetrieveAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentDashboardSerializer
     
+
 
 
 

@@ -5,6 +5,9 @@ urlpatterns = [
     #### STUDENT
     path('students/', views.StudentList.as_view()),
     path('student/<int:pk>/', views.StudentDetail.as_view()),
+    # Student change password
+    path('student/change-password/<int:student_id>/', views.student_change_password),
+    # Student Login
     path('student-login/', views.student_login, name='teacher-login'),
     # Student Dashboard
     path('student/dashboard/<int:pk>', views.StudentDashboard.as_view()),
