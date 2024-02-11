@@ -8,7 +8,7 @@ from API.models import *
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['id', 'full_name', 'username', 'email', 'password', 'mobile_no', 'interested_categories']
+        fields = ['id', 'full_name', 'username', 'profile_img', 'email', 'password', 'mobile_no', 'interested_categories']
         #depth = 1 # Relation between model and instance at 1 depth level
         
         def __init__(self, *args, **kwargs):

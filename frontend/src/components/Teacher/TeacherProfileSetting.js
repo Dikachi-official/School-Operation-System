@@ -51,7 +51,7 @@ function TeacherProfileSetting() {
 
 
         // Course title on react page
-        document.title='Edit Course'
+        document.title='Teacher Settings'
     },[]);
 
 
@@ -118,12 +118,6 @@ function TeacherProfileSetting() {
 
     };
     // End of Submit Form
-
-
-
-    useEffect(()=>{
-        document.title='Teacher Settings'
-    });
 
 
 
@@ -230,7 +224,7 @@ function TeacherProfileSetting() {
                                 </div>
 
                                 <button type="submit" className="btn btn-primary" onClick={submitForm}>
-                                    Register
+                                    Update Profile
                                 </button>
                             </form>
 
