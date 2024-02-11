@@ -18,6 +18,18 @@ class StudentSerializer(serializers.ModelSerializer):
             if request and request.method == 'GET':
                 self.Meta.depth = 1
 
+class StudentDashboardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ['enrolled_courses','favorite_courses', 'completed_assignments', 'pending_assignments']
+
+    def __init__(self, *args, **kwargs):
+        super(StudentDashboardSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 2
+
 
 
 

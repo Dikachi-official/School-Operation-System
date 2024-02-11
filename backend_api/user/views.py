@@ -44,6 +44,12 @@ def student_login(request):
         return JsonResponse({'bool' : False})
     
 
+# Student Dashboard 
+class StudentDashboard(generics.RetrieveAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentDashboardSerializer
+    
+
 
 
 

@@ -57,6 +57,30 @@ class Student(models.Model):
 
     def __str__(self):
         return self.full_name
+    
+    # Total Enrolled Courses
+    def enrolled_courses(self):
+        from API.models import StudentCourseEnrollment
+        enrolled_courses = StudentCourseEnrollment.objects.filter(student=self).count()
+        return enrolled_courses
+    
+    # Total Favorite Courses
+    def favorite_courses(self):
+        from API.models import StudentFavoriteCourse
+        favorite_courses = StudentFavoriteCourse.objects.filter(student=self).count()
+        return favorite_courses
+    
+    # Completed assignments
+    def completed_assignments(self):
+        from API.models import StudentAssignment
+        completed_assignments = StudentAssignment.objects.filter(student=self,student_status=True).count()
+        return completed_assignments  
+    
+    # Pending assignments
+    def pending_assignments(self):
+        from API.models import StudentAssignment
+        pending_assignments = StudentAssignment.objects.filter(student=self,student_status=False).count()
+        return pending_assignments
 
 
 
