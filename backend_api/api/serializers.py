@@ -104,3 +104,15 @@ class StudentAssignmentSerializer(serializers.ModelSerializer):
         self.Meta.depth = 0
         if request and request.method == 'GET':
             self.Meta.depth = 2
+
+
+
+
+
+
+# NOTIFICATION SERIALIZER
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ['id', 'teacher', 'student', 'notif_subject', 'notif_for', 'notif_read_status']
+    

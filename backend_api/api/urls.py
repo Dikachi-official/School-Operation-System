@@ -79,4 +79,14 @@ urlpatterns = [
 
     # STUDENT UPDATE ASSIGNMENT(STUDENT DASHBOARD)
     path('update-assignment/<int:pk>', views.UpdateAssignment.as_view()),
+
+
+
+
+    # NOTIFICATION URL    # NOTIFICATION URL
+    # NOTIFICATION URL    # NOTIFICATION URL
+    # NOTIFICATION URL    # NOTIFICATION URL
+    path('student/fetch-all-notifications/<int:student_id>/', views.NotificationList.as_view()),
+    # Save Notification
+    path('save-notification/', views.NotificationList.as_view()),
 ]

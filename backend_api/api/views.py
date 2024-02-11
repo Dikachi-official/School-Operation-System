@@ -239,6 +239,8 @@ class MyAssignmentList(generics.ListCreateAPIView):
     def get_queryset(self):
         student_id = self.kwargs['student_id']
         student = Student.objects.get(pk=student_id)
+        # Update Notification
+        Notification.objects.filter(student=student, notif_for='student', notif_subject='assignment').update(notif_read_status=True)
         return StudentAssignment.objects.filter(student=student)
     
 
@@ -247,5 +249,23 @@ class UpdateAssignment(generics.RetrieveUpdateDestroyAPIView):
     queryset = StudentAssignment.objects.all()
     serializer_class = StudentAssignmentSerializer
     #permission_classes = [permissions.IsAuthenticated]
+
+
+
+
+
+
+
+# NOTIFICATION VIEWS
+# NOTIFICATION VIEWS
+# NOTIFICATION VIEWS
+class NotificationList(generics.ListCreateAPIView):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer
+
+    def get_queryset(self):
+        student_id = self.kwargs['student_id']
+        student = Student.objects.get(pk=student_id)
+        return Notification.objects.filter(student=student, notif_for='student', notif_subject='assignment', notif_read_status=False)
 
     

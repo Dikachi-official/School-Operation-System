@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -53,7 +53,7 @@ function AddAssignment() {
             .then((res)=>{
                 //console.log(res.data)
 
-                if (res.status==200||res.status==201){
+                if (res.status===200||res.status===201){
                     Swal.fire({
                         title: 'Assignment has been added',
                         icon: 'success',
@@ -63,8 +63,27 @@ function AddAssignment() {
                         timerProgressBar: true,
                         showConfirmButton: false
                     });
+
+                    // Save Notification Data
+                    const _notifData=new FormData();
+                    _notifData.append('teacher', teacher_id);
+                    _notifData.append('notif_subject', 'assignment');
+                    _notifData.append('notif_for', 'student');
+                    _notifData.append('student', student_id);
+                    axios.post(baseUrl+'/save-notification/', _notifData,{
+                        headers: {
+                            'content-type': 'multipart/form-data'
+                        }
+                    })
+                    .then((res)=>{
+                        console.log("Notification Added");
+                    })
+                    // End of Notification
+
+
                     window.location.reload();
                 }
+                // End Sweetalert
             });
         }
         catch(error){
