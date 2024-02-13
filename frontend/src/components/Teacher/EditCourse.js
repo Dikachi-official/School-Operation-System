@@ -124,6 +124,12 @@ function EditCourse() {
 
 
 
+    const handleSubmit = async e => {   //handleSubmiting of the form
+        e.preventDefault()   //Preventpage refresh
+      }
+
+
+
     return (
         <div className='container mt-4 mb-4'>
             <div className='row'>
@@ -134,7 +140,7 @@ function EditCourse() {
                     <div className='card'>
                         <h5 className='card-header'>Edit Course</h5>
                         <div className='card-body'>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className='mb-3'>
                                     <label for='title' className='form-label'>Category</label>
                                     <select name='category' value={courseData.category} className='form-control' onChange={handleChange}>

@@ -82,11 +82,18 @@ urlpatterns = [
 
 
 
-
-    # NOTIFICATION URL    # NOTIFICATION URL
-    # NOTIFICATION URL    # NOTIFICATION URL
     # NOTIFICATION URL    # NOTIFICATION URL
     path('student/fetch-all-notifications/<int:student_id>/', views.NotificationList.as_view()),
     # Save Notification
     path('save-notification/', views.NotificationList.as_view()),
+
+
+
+    # QUIZ URL    # QUIZ URL
+    path('quiz/', views.QuizList.as_view()),
+    path('teacher-quiz/<int:teacher_id>/', views.TeacherQuizList.as_view()),
+    # Specific teacher quiz detail
+    path('teacher-quiz-detail/<int:pk>', views.TeacherQuizDetail.as_view()),
+    # Specific Quiz
+    path('quiz/<int:pk>', views.QuizDetailView.as_view()),
 ]

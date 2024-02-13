@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .serializers import *
 from .models import *
 from django.db.models import Q
-from user.models import *
+from user.models import * 
 
 # DRF IMPORTS
 from rest_framework.views import APIView
@@ -267,5 +267,37 @@ class NotificationList(generics.ListCreateAPIView):
         student_id = self.kwargs['student_id']
         student = Student.objects.get(pk=student_id)
         return Notification.objects.filter(student=student, notif_for='student', notif_subject='assignment', notif_read_status=False)
+
+    
+
+
+# QUIZ VIEWS
+# QUIZ VIEWS
+# QUIZ VIEWS
+class QuizList(generics.ListCreateAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+# Specific Teacher Quiz(s)
+class TeacherQuizList(generics.ListCreateAPIView):
+    serializer_class = QuizSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        teacher_id=self.kwargs['teacher_id']
+        teacher=Teacher.objects.get(pk=teacher_id)
+        return Quiz.objects.filter(teacher=teacher)
+    
+# Specific Teacher Quiz detail
+class TeacherQuizDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = QuizSerializer
+    queryset = Quiz.objects.all()
+    #permission_classes = [permissions.IsAuthenticated]
+
+class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
+    #permission_classes = [permissions.IsAuthenticated]
 
     

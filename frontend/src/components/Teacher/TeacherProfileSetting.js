@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -97,7 +96,7 @@ function TeacherProfileSetting() {
             })
             .then((res)=>{
                 // If the data above has been put to api, then sweetalert
-                if(res.status==200){
+                if(res.status===200){
                     Swal.fire({
                         title: 'Data has been updated',
                         icon: 'success',

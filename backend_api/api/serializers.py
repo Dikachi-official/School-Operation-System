@@ -116,3 +116,23 @@ class NotificationSerializer(serializers.ModelSerializer):
         model = Notification
         fields = ['id', 'teacher', 'student', 'notif_subject', 'notif_for', 'notif_read_status']
     
+
+
+
+
+#### QUIZ SERIALIZER
+class QuizSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quiz
+        fields = ['id','title', 'detail', 'teacher', 'add_time']
+    
+    '''
+    USE THIS WHEN HAVING "FOREIGN KEY" OBJECTS IN THE ABOVE MODEL
+        INSTEAD OF "DEPTH" WHICH IS READONLY
+    '''
+    def __init__(self, *args, **kwargs):
+        super(QuizSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 2

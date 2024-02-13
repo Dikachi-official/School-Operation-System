@@ -48,6 +48,16 @@ import AddAssignment from './Teacher/AddAssignment';
 
 
 
+
+// QUIZ ROUTE
+import AllQuiz from './Teacher/AllQuiz';
+import AddQuiz from './Teacher/AddQuiz';
+import EditQuiz from './Teacher/EditQuiz';
+
+
+
+
+
 //OTHER ROUTES
 import PopularCourses from './PopularCourses';
 import CategoryCourses from './CategoryCourses';
@@ -84,6 +94,7 @@ function Main(){
                     <Route path="/student-change-password" component={StudentChangePassword} />
 
 
+
                     {/* === TEACHER ROUTE ==== */}
                     <Route path="/teacher-login" component={TeacherLogin} />
                     <Route path="/teacher-logout" component={TeacherLogout} />
@@ -103,7 +114,14 @@ function Main(){
                     <Route path="/edit-chapter/:chapter_id" component={EditChapter} />
                     <Route path="/course-chapters/:course_id" component={CourseChapters} />
                     <Route path="/teacher-skill-courses/:skill_name/:teacher_id" component={TeacherSkillCourses} />
-                    
+
+
+
+
+                    {/*=== QUIZ ROUTE ===*/}
+                    <Route path="/quiz" component={AllQuiz} /> 
+                    <Route path="/add-quiz" component={AddQuiz} />       
+                    <Route path="/edit-quiz/:quiz_id" component={EditQuiz} />   
 
 
 
