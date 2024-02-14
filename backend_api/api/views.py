@@ -300,4 +300,15 @@ class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = QuizSerializer
     #permission_classes = [permissions.IsAuthenticated]
 
+##### COURSE CHAPTER
+class QuizQuestionList(generics.ListAPIView):
+    serializer_class = QuestionSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        quiz_id = self.kwargs['quiz_id']
+        quiz = Quiz.objects.get(pk=quiz_id)
+        return QuizQuestions.objects.filter(quiz=quiz)
+    
+
     

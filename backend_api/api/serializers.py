@@ -33,7 +33,7 @@ class ChapterSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'video', 'remarks']
     
     def __init__(self, *args, **kwargs):
-        super(StudentCourseEnrollSerializer, self).__init__(*args, **kwargs)
+        super(ChapterSerializer, self).__init__(*args, **kwargs)
         request = self.context.get('request')
         self.Meta.depth = 0
         if request and request.method == 'GET':
@@ -136,3 +136,16 @@ class QuizSerializer(serializers.ModelSerializer):
         self.Meta.depth = 0
         if request and request.method == 'GET':
             self.Meta.depth = 2
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuizQuestions
+        fields = ['id', 'quiz', 'questions', 'ans1', 'ans2','ans3', 'ans4', 'right_ans']
+    
+    def __init__(self, *args, **kwargs):
+        super(QuestionSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 1

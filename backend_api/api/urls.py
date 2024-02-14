@@ -96,4 +96,6 @@ urlpatterns = [
     path('teacher-quiz-detail/<int:pk>', views.TeacherQuizDetail.as_view()),
     # Specific Quiz
     path('quiz/<int:pk>', views.QuizDetailView.as_view()),
+        # Specific Quiz Question
+    path('quiz-questions/<int:quiz_id>/', views.QuizQuestionList.as_view()),
 ]

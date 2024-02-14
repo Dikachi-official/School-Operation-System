@@ -53,6 +53,7 @@ import AddAssignment from './Teacher/AddAssignment';
 import AllQuiz from './Teacher/AllQuiz';
 import AddQuiz from './Teacher/AddQuiz';
 import EditQuiz from './Teacher/EditQuiz';
+import QuizQuestions from './Teacher/QuizQuestions';
 
 
 
@@ -121,7 +122,8 @@ function Main(){
                     {/*=== QUIZ ROUTE ===*/}
                     <Route path="/quiz" component={AllQuiz} /> 
                     <Route path="/add-quiz" component={AddQuiz} />       
-                    <Route path="/edit-quiz/:quiz_id" component={EditQuiz} />   
+                    <Route path="/edit-quiz/:quiz_id" component={EditQuiz} /> 
+                    <Route path="/all-questions/:quiz_id" component={QuizQuestions} />     
 
 
 
