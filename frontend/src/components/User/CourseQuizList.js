@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
@@ -11,15 +11,17 @@ const baseUrl='http://127.0.0.1:8000/api';
 
 function CourseQuizList() {
     const [courseData, setCourseData]=useState([]);
+    const [quizData, setquizData]=useState([]);
 
     const studentId=localStorage.getItem('studentId');
+    const {course_id}=useParams();
     console.log(studentId)
     // Fetch all students courses for student
     useEffect(()=>{
         try{
-            axios.get(baseUrl+'/fetch-enrolled-courses/'+studentId+'/')
+            axios.get(baseUrl+'/fetch-assigned-quiz/'+course_id+'/')
             .then((res)=>{
-                setCourseData(res.data);
+                setquizData(res.data);
 
             });
         }catch(error){
@@ -27,7 +29,7 @@ function CourseQuizList() {
         }
 
 
-        document.title='Course Quiz'
+        document.title='Course Quiz List'
     }, []);
 
     console.log(courseData);
@@ -51,15 +53,12 @@ function CourseQuizList() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {courseData.map((row,index)=> 
+                                    {quizData.map((row,index)=> 
                                     <>
                                     <tr>
-                                        <td>Python Quiz</td>
-                                        <td className='text-success'>Attempted</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Django Quiz</td>
-                                        <td><Link to={'/take-quiz/1'} className='btn btn-sm btn-warning'>Take Quiz</Link></td>
+                                        <td>{row.quiz.title}</td>
+                                        
+                                        <td><Link to={`/take-quiz/`+row.quiz.id} className='btn btn-sm btn-warning'>Take Quiz</Link></td>
                                     </tr>
                                     </>
                                     )}

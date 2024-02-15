@@ -1,14 +1,14 @@
 from rest_framework import serializers
 from .models import *
 
-
+# CATEGORY SERIALIZER
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseCategory
         fields = ['id', 'title', 'description']
 
 
-
+# COURSE SERIALIZER
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
@@ -26,7 +26,7 @@ class CourseSerializer(serializers.ModelSerializer):
             self.Meta.depth = 2
         
 
-
+# COURSE CHAPTERVSERIALIZER
 class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
@@ -41,6 +41,7 @@ class ChapterSerializer(serializers.ModelSerializer):
 
 
 
+# STUDENT COURSE ENROLLMENT SERIALIZER
 class StudentCourseEnrollSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentCourseEnrollment
@@ -57,7 +58,7 @@ class StudentCourseEnrollSerializer(serializers.ModelSerializer):
 
 
 
-
+# STUDENT FAVORIE COURSE SERIALIZER
 class StudentFavoriteCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentFavoriteCourse
@@ -71,7 +72,7 @@ class StudentFavoriteCourseSerializer(serializers.ModelSerializer):
 
 
 
-
+# COURSE RATING SERIALIZER
 class CourseRatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseRating
@@ -88,7 +89,7 @@ class CourseRatingSerializer(serializers.ModelSerializer):
         if request and request.method == 'GET':
             self.Meta.depth = 1
 
-
+# STUDENT ASSIGNMENT SERIALIZER
 class StudentAssignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentAssignment
@@ -137,7 +138,7 @@ class QuizSerializer(serializers.ModelSerializer):
         if request and request.method == 'GET':
             self.Meta.depth = 2
 
-
+# QUESTION SERIALIZER
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuizQuestions
@@ -151,6 +152,7 @@ class QuestionSerializer(serializers.ModelSerializer):
             self.Meta.depth = 1
 
 
+# COURSE QUIZ SERIALIZER
 class CourseQuizSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseQuiz

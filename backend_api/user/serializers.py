@@ -52,7 +52,6 @@ class TeacherSerializer(serializers.ModelSerializer):
         if request and request.method == 'GET':
             self.Meta.depth = 1
 
-
 class TeacherDashboardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
