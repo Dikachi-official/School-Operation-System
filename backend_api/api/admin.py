@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CourseCategory, Course, Chapter, StudentCourseEnrollment, StudentFavoriteCourse, CourseRating, StudentAssignment, Notification, Quiz, QuizQuestions, CourseQuiz, AttemptQuiz
+from .models import CourseCategory, Course, Chapter, StudentCourseEnrollment, StudentFavoriteCourse, CourseRating, StudentAssignment, Notification, Quiz, QuizQuestions, CourseQuiz, AttemptQuiz, StudyMaterial
 
 # Register your models here.
 admin.site.register(CourseCategory)
@@ -19,3 +19,4 @@ admin.site.register(Notification, NotificationAdmin)
 admin.site.register(Quiz)
 admin.site.register(QuizQuestions)
 admin.site.register(CourseQuiz)
+admin.site.register(StudyMaterial)

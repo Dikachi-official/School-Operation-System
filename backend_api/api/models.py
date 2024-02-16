@@ -190,6 +190,18 @@ class AttemptQuiz(models.Model):
 
 
 
+# Study Material Model
+class StudyMaterial(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    upload = models.FileField(upload_to='study_materials/', null=True)
+    remarks = models.TextField(null=True)
+
+    def __str__(self):
+        return self.title
+
+
 
 
 
