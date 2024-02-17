@@ -31,7 +31,7 @@ function CourseDetail() {
 
 
     let {course_id} = useParams();
-    //Fetch courses after page refresh
+    //Fetch courses
     useEffect(()=>{
         try{
             axios.get(baseUrl+'/course/'+course_id)
@@ -130,7 +130,7 @@ function CourseDetail() {
                 //console.log(res.data)
                 //window.location.href='/add-courses';
 
-                if (res.status==200||res.status==201){
+                if (res.status===200||res.status===201){
                     Swal.fire({
                         title: 'You have successfully enrolled in this course',
                         icon: 'success',

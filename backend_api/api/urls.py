@@ -96,6 +96,10 @@ urlpatterns = [
     path('teacher-quiz-detail/<int:pk>', views.TeacherQuizDetail.as_view()),
     # Specific Quiz
     path('quiz/<int:pk>', views.QuizDetailView.as_view()),
-        # Specific Quiz Question
+    # Specific Quiz Question
     path('quiz-questions/<int:quiz_id>/', views.QuizQuestionList.as_view()),
+    # Child component url for "quiz-assign-course/" url Component
+    path('fetch-quiz-assign-status/<int:quiz_id>/<int:course_id>/', views.fetch_quiz_assign_status),
+
+    path('quiz-assign-course/', views.CourseQuizList.as_view()),
 ]

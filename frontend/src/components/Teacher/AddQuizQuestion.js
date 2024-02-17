@@ -96,7 +96,7 @@ function AddQuizQuestion() {
                 </aside>
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>Add Question</h5>
+                        <h5 className='card-header'>Add Question   <Link className='btn btn-success btn-sm float-end' to={`/all-questions/`+quiz_id}>All Questions</Link> </h5>  
                         <div className='card-body'>
                             <form onSubmit={handleSubmit}>
                                 <div className='mb-3'>

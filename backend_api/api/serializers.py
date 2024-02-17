@@ -124,7 +124,7 @@ class NotificationSerializer(serializers.ModelSerializer):
 class QuizSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
-        fields = ['id','title', 'detail', 'teacher', 'add_time']
+        fields = ['id','title', 'assign_status', 'detail', 'teacher', 'add_time']
     
     '''
     USE THIS WHEN HAVING "FOREIGN KEY" OBJECTS IN THE ABOVE MODEL
@@ -149,3 +149,16 @@ class QuestionSerializer(serializers.ModelSerializer):
         self.Meta.depth = 0
         if request and request.method == 'GET':
             self.Meta.depth = 1
+
+
+class CourseQuizSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CourseQuiz
+        fields = ['id', 'course', 'quiz', 'teacher']
+        #depth = 1
+    def __init__(self, *args, **kwargs):
+        super(CourseQuizSerializer, self).__init__(*args, **kwargs)
+        request = self.context.get('request')
+        self.Meta.depth = 0
+        if request and request.method == 'GET':
+            self.Meta.depth = 2

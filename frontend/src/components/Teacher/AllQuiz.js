@@ -100,7 +100,7 @@ function AllQuiz() {
                                         <td><Link to='#'>123</Link></td>
                                         <td>
                                             <Link className='btn btn-info btn-sm ms-2' to={`/edit-quiz/`+row.id}>Edit</Link>
-                                            <Link className='btn btn-success btn-sm ms-2 me-2' to={'/add-quiz-question/'+row.id}>Add Questions</Link>
+                                            <Link className='btn btn-success btn-sm ms-2 me-2' to={`/add-quiz-question/`+row.id}>Add Questions</Link>
                                             <button onClick={()=>handleDeleteClick(row.id)} className='btn btn-danger btn-sm'>Delete</button>
                                         </td>
                                     </tr>

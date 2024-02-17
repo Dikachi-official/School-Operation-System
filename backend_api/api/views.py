@@ -311,4 +311,21 @@ class QuizQuestionList(generics.ListAPIView):
         return QuizQuestions.objects.filter(quiz=quiz)
     
 
+class CourseQuizList(generics.ListCreateAPIView):
+    queryset = CourseQuiz.objects.all()
+    serializer_class = CourseQuizSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+def fetch_quiz_assign_status(request, quiz_id, course_id):
+    quiz = Quiz.objects.filter(id=quiz_id).first()
+    course = Course.objects.filter(id=course_id).first()
+    assignStatus = CourseQuiz.objects.filter(course=course, quiz=quiz).count()
+    if assignStatus:
+        return JsonResponse({'bool':True})
+    else:
+        return JsonResponse({'bool':False})
+
+
+    
+
     
