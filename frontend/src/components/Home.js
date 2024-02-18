@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom'
-import AllCourses from './AllCourses';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 
@@ -12,7 +11,6 @@ const baseUrl='http://127.0.0.1:8000/api';
 
 function Home(){
     const [courseData, setCourseData]=useState([]);
-    const {course_id}=useParams()
 
     //Fetch courses after page refresh
     useEffect(()=>{
@@ -33,7 +31,18 @@ function Home(){
     }, []);
 
     return (
+        <>
+        {/*== LANDING PAGE ==*/}
+        <div className='bg-black w-100 p-10 m-20'>
+            <h2 className='fc-white'>Welcome </h2>
+            <p>
+                This is our school site, We are pleased to release this version to you
+            </p>
+        </div>
+        {/*== END OF LANDING PAGE ==*/}
+        <div className='bg-black'></div>
         <div className='container p-3'>
+            
             {/*=== LATEST COURSES ===*/}
             <h3 className='pb-1 mb-4 mt-4 text-start'>Latest Courses  <Link to="/all-courses" className="ml-7">See All...</Link></h3>
             <div className='row p-2'>
@@ -63,7 +72,7 @@ function Home(){
                 <div className='col-md-3 p-2'>
                     <div className="card">
                         <Link to="/popular-courses">
-                            <img src="logo182.png" classname="card-img-top" alt="Course picture" />
+                            <img src="logo182.png" classname="card-img-top" alt="Course img" />
                         </Link>
                         <div className="card-body">
                             <h5 className="card-title">Popular Courses</h5>
@@ -76,7 +85,7 @@ function Home(){
                 <div className='col-md-3 p-2'>
                     <div className="card">
                         <Link to="/popular-courses">
-                            <img src="logo182.png" classname="card-img-top" alt="Course picture" />
+                            <img src="logo182.png" classname="card-img-top" alt="Course img" />
                         </Link>
                         <div className="card-body">
                             <h5 className="card-title">Popular Courses</h5>
@@ -89,7 +98,7 @@ function Home(){
                 <div className='col-md-3 p-2'>
                     <div className="card">
                         <Link to="/popular-courses">
-                            <img src="logo182.png" classname="card-img-top" alt="Course Picture" />
+                            <img src="logo182.png" classname="card-img-top" alt="Course img" />
                         </Link>
                         <div className="card-body">
                             <h5 className="card-title">Popular Courses</h5>
@@ -102,7 +111,7 @@ function Home(){
                 <div className='col-md-3 p-2'>
                     <div className="card">
                         <Link to="/popular-courses">
-                            <img src="logo182.png" classname="card-img-top" alt="Course Picture" />
+                            <img src="logo182.png" classname="card-img-top" alt="Course img" />
                         </Link>
                         <div className="card-body">
                             <h5 className="card-title">Popular Courses</h5>
@@ -266,6 +275,7 @@ function Home(){
             </div>
             {/*=== END OF STUDENT TESTIMONIAL ===*/}
         </div>
+        </>
     );
 }
 

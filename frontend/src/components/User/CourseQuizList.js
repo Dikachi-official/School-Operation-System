@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const baseUrl='http://127.0.0.1:8000/api';
 
-function MyCourses() {
+function CourseQuizList() {
     const [courseData, setCourseData]=useState([]);
 
     const studentId=localStorage.getItem('studentId');
@@ -27,7 +27,7 @@ function MyCourses() {
         }
 
 
-        document.title='My Courses'
+        document.title='Course Quiz'
     }, []);
 
     console.log(courseData);
@@ -41,24 +41,27 @@ function MyCourses() {
                 </aside>
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>My Courses</h5>
+                        <h5 className='card-header'>Quiz List</h5>
                         <div className='card-body'>
                             <table className='table table-bordered'>
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Created By</th>
                                         <th>Quiz</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {courseData.map((row,index)=> 
+                                    <>
                                     <tr>
-                                    
-                                        <td><Link to={'/detail/'+row.course.id}>{row.course.title}</Link></td>
-                                        <td><Link to=''></Link>{row.course.teacher.full_name}</td>
-                                        <td><Link to={'/course-quiz/'+row.course.id} className='btn btn-sm btn-warning'>Quiz List</Link></td>
+                                        <td>Python Quiz</td>
+                                        <td className='text-success'>Attempted</td>
                                     </tr>
+                                    <tr>
+                                        <td>Django Quiz</td>
+                                        <td><Link to={'/take-quiz/1'} className='btn btn-sm btn-warning'>Take Quiz</Link></td>
+                                    </tr>
+                                    </>
                                     )}
                                 </tbody>
                             </table>
@@ -70,4 +73,4 @@ function MyCourses() {
     )
 }
 
-export default MyCourses;
+export default CourseQuizList;
