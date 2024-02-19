@@ -359,6 +359,20 @@ def fetch_quiz_attempt_status(request, quiz_id, student_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+    
+
+
+
+
+##### STUDY MATERIAL LIST
+class StudyMaterialList(generics.ListAPIView):
+    serializer_class = StudyMaterialSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        course_id = self.kwargs['course_id']
+        course = Course.objects.get(pk=course_id)
+        return StudyMaterial.objects.filter(course=course)
 
     
 

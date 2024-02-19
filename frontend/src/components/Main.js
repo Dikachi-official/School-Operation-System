@@ -44,6 +44,7 @@ import AllChapters from './Teacher/AllChapters';
 import EditChapter from './Teacher/EditChapter';
 import TeacherSkillCourses from './Teacher/TeacherSkillCourses';
 import AddAssignment from './Teacher/AddAssignment';
+import StudyMaterials from './Teacher/StudyMaterials';
 
 
 
@@ -144,6 +145,14 @@ function Main(){
                     {/*=== STUDENT DASHBOARD : QUIZ ROUTE ===*/}
                     <Route path="/course-quiz/:course_id" component={CourseQuizList} />
                     <Route path="/take-quiz/:quiz_id" component={TakeQuiz} />
+
+
+
+
+                    {/*=== STUDY MATERIALS ===*/}
+                    <Route path="/study-materials/:course_id" component={StudyMaterials} />
+                    {/*<Route path="/edit-study/:study_id" component={EditChapter} />*/}
+
 
 
 

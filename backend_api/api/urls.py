@@ -113,4 +113,10 @@ urlpatterns = [
     path('quiz-questions/<int:quiz_id>/next-question/<int:question_id>', views.QuizQuestionList.as_view()),
 
     path('fetch-quiz-attempt-status/<int:quiz_id>/<int:student_id>/', views.fetch_quiz_attempt_status),
+
+
+
+
+    # STUDY MATERIALS 
+    path('study-materials/<int:course_id>', views.CourseChapterList.as_view()),
 ]
