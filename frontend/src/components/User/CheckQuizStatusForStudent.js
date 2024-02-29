@@ -10,13 +10,12 @@ const baseUrl='http://127.0.0.1:8000/api';
 
 function CheckQuizInCourse(props){
     const [quizData, setquizData]=useState([]);
-    //const {course_id}=useParams()
-    //const {quiz_id}=useParams()
+
     // To check if student is enrolled in a  course
     const [assignStatus, setassignStatus]=useState([]);
 
-
     const studentId=localStorage.getItem('studentId');
+
     //Fetch teacher quiz after page refresh
     useEffect(()=>{
         try{

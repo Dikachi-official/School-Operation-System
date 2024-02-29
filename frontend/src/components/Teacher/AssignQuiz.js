@@ -13,6 +13,7 @@ function AssignQuiz() {
     const [courseData, setCourseData]=useState([]);
     const {course_id}=useParams()
     const {quiz_id}=useParams()
+    
     // To check if student is enrolled in a  course
     const [assignStatus, setassignStatus]=useState([]);
 
