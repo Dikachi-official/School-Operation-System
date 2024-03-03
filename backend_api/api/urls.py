@@ -98,10 +98,17 @@ urlpatterns = [
     path('quiz/<int:pk>', views.QuizDetailView.as_view()),
     # Specific Quiz Question
     path('quiz-questions/<int:quiz_id>/', views.QuizQuestionList.as_view()),
+    path('quiz-questions/<int:quiz_id>/<int:limit>/', views.QuizQuestionList.as_view()),
     # Child component url for "quiz-assign-course/" url Component
     path('fetch-quiz-assign-status/<int:quiz_id>/<int:course_id>/', views.fetch_quiz_assign_status),
-
+    # To assign specifc quiz to its respective course
     path('quiz-assign-course/', views.CourseQuizList.as_view()),
-
+    # To fetch assigned course quiz by course id 
     path('fetch-assigned-quiz/<int:course_id>/', views.CourseQuizList.as_view()),
+    # To get attempt quiz questions
+    path('attempt-quiz/', views.AttemptQuizList.as_view()),
+
+    path('quiz-questions/<int:quiz_id>/next-question/<int:question_id>', views.QuizQuestionList.as_view()),
+
+    path('fetch-quiz-attempt-status/<int:quiz_id>/<int:student_id>/', views.fetch_quiz_attempt_status),
 ]

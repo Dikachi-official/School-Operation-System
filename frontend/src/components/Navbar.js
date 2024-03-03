@@ -26,6 +26,13 @@ function Navbar(){
                     >
                         <span className="navbar-toggler-icon" />
                     </button>
+
+                    {/*=== SEACH BAR ====*/}
+                    <form className='d-flex'>
+                        <input className='form-control me-2' type='search' placeholder='Search by course/technology' aria-label='Search'/>
+                        <button className='btn btn-warning' type='submit'>Search</button>
+                    </form>
+
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul className="navbar-nav ">
                             <li className="nav-item">
@@ -126,6 +133,7 @@ function Navbar(){
                                 </Link>
                             </li>
                         </ul>
+                        
                     </div>
                 </div>
             </nav>

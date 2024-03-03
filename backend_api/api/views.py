@@ -308,7 +308,13 @@ class QuizQuestionList(generics.ListAPIView):
     def get_queryset(self):
         quiz_id = self.kwargs['quiz_id']
         quiz = Quiz.objects.get(pk=quiz_id)
-        return QuizQuestions.objects.filter(quiz=quiz)
+        if 'limit' in self.kwargs:
+            return QuizQuestions.objects.filter(quiz=quiz).order_by('id')[:1]
+        elif 'question_id' in self.kwargs:
+            current_question = self.kwargs['question_id']
+            return QuizQuestions.objects.filter(quiz=quiz, id__gt=current_question).order_by('id')[:1]
+        else:
+            return QuizQuestions.objects.filter(quiz=quiz)
     
 
 class CourseQuizList(generics.ListCreateAPIView):
@@ -330,7 +336,24 @@ def fetch_quiz_assign_status(request, quiz_id, course_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+    
 
+# ATTEMPT QUIZ VIEW
+class AttemptQuizList(generics.ListCreateAPIView):
+    queryset = AttemptQuiz.objects.all()
+    serializer_class = AttemptQuizSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+
+
+def fetch_quiz_attempt_status(request, quiz_id, student_id):
+    quiz = Quiz.objects.filter(id=quiz_id).first()
+    student = Student.objects.filter(id=student_id).first()
+    attemptStatus = AttemptQuiz.objects.filter(student=student, question__quiz=quiz).count()
+    if attemptStatus > 0:
+        return JsonResponse({'bool':True})
+    else:
+        return JsonResponse({'bool':False})
 
     
 

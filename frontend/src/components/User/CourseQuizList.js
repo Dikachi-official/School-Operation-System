@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import CheckQuizStatusForStudent from './CheckQuizStatusForStudent';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,7 +11,7 @@ import axios from 'axios';
 const baseUrl='http://127.0.0.1:8000/api';
 
 function CourseQuizList() {
-    const [courseData, setCourseData]=useState([]);
+    //const [courseData, setCourseData]=useState([]);
     const [quizData, setquizData]=useState([]);
 
     const studentId=localStorage.getItem('studentId');
@@ -32,7 +33,6 @@ function CourseQuizList() {
         document.title='Course Quiz List'
     }, []);
 
-    console.log(courseData);
 
 
     return (
@@ -56,9 +56,10 @@ function CourseQuizList() {
                                     {quizData.map((row,index)=> 
                                     <>
                                     <tr>
-                                        <td>{row.quiz.title}</td>
-                                        
-                                        <td><Link to={`/take-quiz/`+row.quiz.id} className='btn btn-sm btn-warning'>Take Quiz</Link></td>
+                                        <td>
+                                            {row.quiz.title}
+                                        </td>
+                                        <CheckQuizStatusForStudent quiz={row.quiz.id} student={studentId}/>
                                     </tr>
                                     </>
                                     )}

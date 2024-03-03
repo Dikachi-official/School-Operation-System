@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import TeacherSidebar from './TeacherSidebar';
+//import CheckQuizinCourse from './CheckQuizInCourse';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
