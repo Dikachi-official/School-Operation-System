@@ -11,12 +11,12 @@ const baseUrl='http://127.0.0.1:8000/api';
 
 function Search() {
     const [courseData, setCourseData]=useState([]);
-    const {searchString}=useParams()
+    const {searchstring}=useParams()
 
     //Fetch courses after page refresh
     useEffect(()=>{
         try{
-            axios.get(baseUrl+'/search-courses/'+searchString)
+            axios.get(baseUrl+'/search-courses/'+searchstring)
             .then((res)=>{
                 setCourseData(res.data);
 

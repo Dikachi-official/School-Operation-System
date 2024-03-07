@@ -45,6 +45,10 @@ class CourseList(generics.ListCreateAPIView):
             teacher=Teacher.objects.filter(id=teacher).first()
             qs=Course.objects.filter(technologies__icontains=skill_name,teacher=teacher)
 
+        if 'searchstring' in self.request.GET:
+            search=self.request.GET['searchstring']
+            qs=Course.objects.filter(Q(technologies__icontains=search)|Q(title__icontains=search))
+
         # Recommended Courses
         elif 'studentId' in self.kwargs:
             student_id = self.kwargs['studentId']

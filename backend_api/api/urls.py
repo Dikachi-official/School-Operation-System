@@ -9,6 +9,8 @@ urlpatterns = [
     ### COURSE
     # All courses List
     path('course/', views.CourseList.as_view()),
+    # Search Course
+    path('search-courses/<str:searchstring>', views.CourseList.as_view()),
     # Course Detail
     path('course/<int:pk>', views.CourseDetailView.as_view()),
     # Course rating by students
