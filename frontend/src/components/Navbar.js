@@ -1,12 +1,30 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import { useState, useEffect } from 'react';
 
 
 
 function Navbar(){
+    const [searchString, setsearchString]=useState({
+        'search':''
+    });
+
+
+    // Change in Input
+    const handleChange=(event)=>{
+        setsearchString({
+          ...searchString,
+          [event.target.name]:event.target.value
+        });
+    }
+
+
     const studentLoginStatus=localStorage.getItem('studentLoginStatus')
     const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
 
+    const searchCourse = () => {
+        window.location.href='/search'+searchString.search
+    }
 
     return (
         <>
@@ -29,8 +47,8 @@ function Navbar(){
 
                     {/*=== SEACH BAR ====*/}
                     <form className='d-flex'>
-                        <input className='form-control me-2' type='search' placeholder='Search by course/technology' aria-label='Search'/>
-                        <button className='btn btn-warning' type='submit'>Search</button>
+                        <input name="search" onChange={handleChange} className='form-control me-2' type='search' placeholder='Search by course/technology' aria-label='Search'/>
+                        <button onClick={searchCourse} className='btn btn-warning' type='submit'>Search</button>
                     </form>
 
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
