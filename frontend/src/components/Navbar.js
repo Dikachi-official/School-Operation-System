@@ -23,7 +23,10 @@ function Navbar(){
     const teacherLoginStatus=localStorage.getItem('teacherLoginStatus')
 
     const searchCourse = () => {
-        window.location.href='/search'+searchString.search
+        if (searchString.search != ''){
+            window.location.href='/search/'+searchString.search
+        }
+        console.log(searchString);
     }
 
     return (
@@ -48,7 +51,7 @@ function Navbar(){
                     {/*=== SEACH BAR ====*/}
                     <form className='d-flex'>
                         <input name="search" onChange={handleChange} className='form-control me-2' type='search' placeholder='Search by course/technology' aria-label='Search'/>
-                        <button onClick={searchCourse} className='btn btn-warning' type='submit'>Search</button>
+                        <button onClick={searchCourse} className='btn btn-warning' type='button'>Search</button>
                     </form>
 
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">

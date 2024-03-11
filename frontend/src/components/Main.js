@@ -75,6 +75,7 @@ import CategoryCourses from './CategoryCourses';
 import AllTeachers from './AllTeachers';
 import EnrolledStudents from './EnrolledStudents';
 import ShowAssignment from './Teacher/ShowAssignment';
+import Search from './Search';
 
 
 
@@ -150,6 +151,7 @@ function Main(){
                     {/*=== OTHER ROUTES === */}
                     <Route path="/enrolled-students/:course_id" component={EnrolledStudents} />
                     <Route path="/all-courses" component={AllCourses} />
+                    <Route path="/search/:searchstring" component={Search} />
                     <Route path="/popular-courses" component={PopularCourses} />
                     <Route path="/all-teachers" component={AllTeachers} />
                     <Route path="/category/:category_slug" component={CategoryCourses} />

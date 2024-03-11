@@ -11,7 +11,7 @@ const baseUrl='http://127.0.0.1:8000/api';
 
 function Search() {
     const [courseData, setCourseData]=useState([]);
-    const {searchstring}=useParams()
+    const {searchstring}=useParams();
 
     //Fetch courses after page refresh
     useEffect(()=>{
@@ -34,9 +34,8 @@ function Search() {
 
   return (
     <div className='container mt-3' >
-        <h3>All courses</h3>
         {/*=== LATEST COURSES ===*/}
-        <h3 className='pb-1 mb-4 mt-4 text-start'>Latest Courses  <Link to="" className="ml-7"></Link></h3>
+        <h3 className='pb-1 mb-4 mt-4 text-start'>Searched for: <span className='text-primary'>{searchstring}</span>  <Link to="" className="ml-7"></Link></h3>
         <div className='row p-2'>
             {courseData && courseData.map((course,index)=>
             <div className='col-md-3 p-2'>
