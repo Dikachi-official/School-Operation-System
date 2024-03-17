@@ -106,7 +106,7 @@ function StudyMaterials() {
                 </section>
             </div>
         </div>
-  )
+    )
 }
 
 export default StudyMaterials;
