@@ -91,7 +91,7 @@ function StudyMaterials() {
                                     {studyData.map((row,index)=>
                                     <tr>
                                         <td> <Link to={'/edit-study/'+row.id}>{row.title}</Link></td>
-                                        <td><Link>{row.upload}</Link></td>
+                                        <td><Link t0={row.upload}>File</Link></td>
                                         <td>{row.remarks}</td>
                                         <td>
                                             <Link to={'/edit-study/'+row.id} className='btn btn-info btn-sm ms-1 text-white'><i className='bi bi-pencil-square'></i></Link>

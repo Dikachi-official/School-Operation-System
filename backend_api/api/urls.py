@@ -118,5 +118,7 @@ urlpatterns = [
 
 
     # STUDY MATERIALS 
-    path('study-materials/<int:course_id>', views.CourseChapterList.as_view()),
+    path('study-materials/<int:course_id>', views.StudyMaterialList.as_view()),
+    # STUDY MATERIAL DETAIL VIEW
+    path('study-material/<int:pk>', views.StudyMaterialView.as_view()),
 ]

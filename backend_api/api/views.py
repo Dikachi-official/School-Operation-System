@@ -373,6 +373,14 @@ class StudyMaterialList(generics.ListAPIView):
         course_id = self.kwargs['course_id']
         course = Course.objects.get(pk=course_id)
         return StudyMaterial.objects.filter(course=course)
+    
+### STUDY MATERIAL DETAIL VIEW
+class StudyMaterialView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Chapter.objects.all()
+    serializer_class = StudyMaterialSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+
 
     
 
