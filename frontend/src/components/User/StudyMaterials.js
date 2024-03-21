@@ -27,7 +27,7 @@ function StudyMaterials() {
         }
 
         // Course title on react page
-        document.title='Student study materials'
+        document.title='Student Study Materials'
     }, []);
 
 
