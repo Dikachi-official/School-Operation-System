@@ -365,7 +365,7 @@ def fetch_quiz_attempt_status(request, quiz_id, student_id):
 
 
 ##### STUDY MATERIAL LIST
-class StudyMaterialList(generics.ListAPIView):
+class StudyMaterialList(generics.ListCreateAPIView):
     serializer_class = StudyMaterialSerializer
     #permission_classes = [permissions.IsAuthenticated]
 

@@ -27,7 +27,7 @@ function StudyMaterials() {
         }
 
         // Course title on react page
-        document.title='Course Chapters'
+        document.title='Study materials'
     }, []);
 
     // Delete Data with sweetalert2
@@ -42,11 +42,11 @@ function StudyMaterials() {
         }).then((result)=>{
             if (result.isConfirmed){
                 try{
-                    axios.delete(baseUrl+'/student-materials/'+study_id)
+                    axios.delete(baseUrl+'/study-material/'+study_id)
                     .then((res)=>{
                         Swal.fire('success', 'Data has been deleted'); //To Prevent page refresh
                         try{
-                            axios.get(baseUrl+'/student-materials/'+course_id)
+                            axios.get(baseUrl+'/study-materials/'+course_id)
                             .then((res)=>{
                                 settotalResult(res.data.length);
                                 setstudyData(res.data);

@@ -38,18 +38,20 @@ function AddStudyMaterial() {
 
     // Change in File Input
     const handleFileChange=(event)=>{
-        window.URL = window.URL || window.webkitURL;
+        setstudyData({
+            ...studyData,
+            [event.target.name]:event.target.files[0]
+        });
+        
+        {/*window.URL = window.URL || window.webkitURL;
         var upload = document.createElement('upload');
         upload.src = URL.createObjectURL(event.target.files[0]);   
+        */}
 
-
-        setstudyData({
-          ...studyData,
-          [event.target.name]:event.target.files[0]
-        });
+        
     }
 
-    const {course_id}=useParams()
+    const {course_id}=useParams();
 
     //Submit Form
     const formSubmit=()=>{
@@ -61,7 +63,7 @@ function AddStudyMaterial() {
         _formData.append("remarks", studyData.remarks);
         
         try{
-            axios.post(baseUrl+'/study-materials/'+course_id+'/',_formData,{
+            axios.post(baseUrl+'/study-materials/'+course_id,_formData,{
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
