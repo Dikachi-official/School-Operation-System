@@ -89,5 +89,4 @@ function TeacherCourses() {
         </div>
     )
 }
-
 export default TeacherCourses;

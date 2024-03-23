@@ -375,8 +375,8 @@ class StudyMaterialList(generics.ListAPIView):
         return StudyMaterial.objects.filter(course=course)
     
 ### STUDY MATERIAL DETAIL VIEW
-class StudyMaterialView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Chapter.objects.all()
+class StudyMaterialDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StudyMaterial.objects.all()
     serializer_class = StudyMaterialSerializer
     #permission_classes = [permissions.IsAuthenticated]
 

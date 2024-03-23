@@ -9,11 +9,11 @@ import Swal from 'sweetalert2';
 
 
 const baseUrl='http://127.0.0.1:8000/api';
-function AddChapter() {
-    const [chapterData, setChapterData]=useState({
+function AddStudyMaterial() {
+    const [studyData, setstudyData]=useState({
         title:'',
         description:'',
-        video:'',
+        upload:'',
         remarks:''
     });
 
@@ -22,26 +22,29 @@ function AddChapter() {
     useEffect(()=>{
 
         // Course title on react page
-        document.title='Add Chapters'
+        document.title='Add Study Materials'
     },[]);
 
-    
-    const [videoDuration, setvideoDuration]=useState();
 
 
 
     // Change in Input
     const handleChange=(event)=>{
-        setChapterData({
-          ...chapterData,
+        setstudyData({
+          ...studyData,
           [event.target.name]:event.target.value
         });
     }
 
     // Change in File Input
     const handleFileChange=(event)=>{
-        setChapterData({
-          ...chapterData,
+        window.URL = window.URL || window.webkitURL;
+        var upload = document.createElement('upload');
+        upload.src = URL.createObjectURL(event.target.files[0]);   
+
+
+        setstudyData({
+          ...studyData,
           [event.target.name]:event.target.files[0]
         });
     }
@@ -52,19 +55,19 @@ function AddChapter() {
     const formSubmit=()=>{
         const _formData=new FormData();
         _formData.append("course",course_id);
-        _formData.append("title", chapterData.title);
-        _formData.append("description", chapterData.description);
-        _formData.append("video", chapterData.video,chapterData.video.name);
-        _formData.append("remarks", chapterData.remarks);
+        _formData.append("title", studyData.title);
+        _formData.append("description", studyData.description);
+        _formData.append("upload", studyData.upload,studyData.upload.name);
+        _formData.append("remarks", studyData.remarks);
         
         try{
-            axios.post(baseUrl+'/course-chapter/'+course_id,_formData,{
+            axios.post(baseUrl+'/study-materials/'+course_id+'/',_formData,{
                 headers: {
                     'content-type': 'multipart/form-data'
                 }
             })
             .then((res)=>{
-                //console.log(res.data)
+                console.log(res.data)
 
                 if (res.status==200||res.status==201){
                     Swal.fire({
@@ -88,6 +91,11 @@ function AddChapter() {
     // End of Submit Form
 
 
+    const handleSubmit = async e => {   //handleSubmiting of the form
+        e.preventDefault()   //Preventpage refresh
+    }
+
+
 
 
 
@@ -99,9 +107,9 @@ function AddChapter() {
                 </aside>
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>Add Chapter</h5>
+                        <h5 className='card-header'>Add Study Material</h5>
                         <div className='card-body'>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className='mb-3'>
                                     <label for='title' className='form-label'>Title</label>
                                     <input type="text" onChange={handleChange} name='title' id="title" className='form-control'/>
@@ -113,16 +121,16 @@ function AddChapter() {
                                 </div>
 
                                 <div className='mb-3'>
-                                    <label for='video' className='form-label'>Video</label>
-                                    <input type="file" onChange={handleFileChange} name='video' id="video" className='form-control'/>
+                                    <label for='upload' className='form-label'>Upload</label>
+                                    <input type="file" onChange={handleFileChange} name='upload' id="upload" className='form-control'/>
                                 </div>
 
                                 <div className='mb-3'>
-                                    <label for='tech' className='form-label'>Remarks</label>
-                                    <textarea id="tech" onChange={handleChange} name='remarks' className='form-control' placeholder='This video is focused on basic remarks'></textarea>
+                                    <label for='remarks' className='form-label'>Remarks</label>
+                                    <textarea id="remarks" onChange={handleChange} name='remarks' className='form-control'></textarea>
                                 </div>
                                 
-                                <button type="submit" className='btn btn-primary' onClick={formSubmit}>Submit</button>
+                                <button type="button" className='btn btn-primary' onClick={formSubmit}>Submit</button>
                             </form>
                         </div>
                     </div>
@@ -132,4 +140,4 @@ function AddChapter() {
     )
 }
 
-export default AddChapter;
+export default AddStudyMaterial;

@@ -90,7 +90,7 @@ function StudyMaterials() {
                                 <tbody>
                                     {studyData.map((row,index)=>
                                     <tr>
-                                        <td> <Link to={'/edit-study/'+row.id}>{row.title}</Link></td>
+                                        <td>{row.title}</td>
                                         <td><Link t0={row.upload}>File</Link></td>
                                         <td>{row.remarks}</td>
                                         <td>

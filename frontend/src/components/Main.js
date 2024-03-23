@@ -45,6 +45,7 @@ import EditChapter from './Teacher/EditChapter';
 import TeacherSkillCourses from './Teacher/TeacherSkillCourses';
 import AddAssignment from './Teacher/AddAssignment';
 import StudyMaterials from './Teacher/StudyMaterials';
+import AddStudyMaterial from './Teacher/AddStudyMaterial';
 
 
 
@@ -151,6 +152,7 @@ function Main(){
 
                     {/*=== STUDY MATERIALS ===*/}
                     <Route path="/study-materials/:course_id" component={StudyMaterials} />
+                    <Route path="/add-study/:course_id" component={AddStudyMaterial} />
                     {/*<Route path="/edit-study/:study_id" component={EditChapter} />*/}
 
 
