@@ -354,6 +354,12 @@ class AttemptQuizList(generics.ListCreateAPIView):
             quiz_id =self.kwargs['quiz_id']
             quiz = Quiz.objects.get(pk=quiz_id)
             return AttemptQuiz.objects.filter(quiz=quiz)
+        
+        if 'quiz_id_for_result' in self.kwargs:
+            quiz_id =self.kwargs['quiz_id']
+            quiz = Quiz.objects.get(pk=quiz_id)
+            return AttemptQuiz.objects.filter(quiz=quiz)
+
 
 
 

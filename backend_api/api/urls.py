@@ -123,4 +123,6 @@ urlpatterns = [
     path('study-material/<int:pk>', views.StudyMaterialDetailView.as_view()),
     # ATTEMPTED QUIZ
     path('attempted-quiz/<int:quiz_id>', views.AttemptQuizList.as_view()),
+    # QUIZ RESULT
+    path('fetch-quiz-result/<int:quiz_id>/<int:student_id>', views.AttemptQuizList.as_view()),
 ]
