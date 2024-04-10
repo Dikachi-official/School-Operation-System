@@ -42,7 +42,8 @@ function StudyMaterials() {
                 </aside>
                 <section className='col-md-9'>
                     <div className='card'>
-                        <h5 className='card-header'>All Study Materials ({totalResult})<Link className='btn btn-success btn-sm float-end' to={'/add-study/'+course_id}>Add Study Materials</Link></h5>
+                        <h5 className='card-header'>All Study Materials ({totalResult})</h5>
+                        {/*<Link className='btn btn-success btn-sm float-end' to={'/add-study/'+course_id}>Add Study Materials</Link>*/}
                         <div className='card-body'>
                             <table className='table table-bordered'>
                                 <thead>
@@ -58,8 +59,8 @@ function StudyMaterials() {
                                     <tr>
                                         <td>{row.title}</td>
                                         <td>{row.detail}</td>
-                                        <td><Link t0={row.upload}>File</Link></td>
                                         <td>{row.remarks}</td>
+                                        <td><Link to={row.upload}>File</Link></td>
                                     </tr>
                                     )}
                                 </tbody>

@@ -108,8 +108,15 @@ function CheckQuizinCourse(props) {
             {quizData.bool===false &&
                 <button onClick={()=>assignQuiz(props.quiz)} className='btn btn-success btn-sm ms-2'>Assign Quiz</button>
             }
+
             {quizData.bool=== true &&
-                <span className='text-success'>Assigned</span>
+                <>
+                    <span className='btn btn-sm btn-secondary'>
+                        Assigned
+                    </span>
+                    &nbsp;
+                    <Link className="btn btn-sm btn-info" to={`/attempted-students/`+props.quiz}>Attempted Students</Link>
+                </>
             }
         </td>
     )

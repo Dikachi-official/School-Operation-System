@@ -349,6 +349,12 @@ class AttemptQuizList(generics.ListCreateAPIView):
     serializer_class = AttemptQuizSerializer
     #permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        if 'quiz_id' in self.kwargs:
+            quiz_id =self.kwargs['quiz_id']
+            quiz = Quiz.objects.get(pk=quiz_id)
+            return AttemptQuiz.objects.filter(quiz=quiz)
+
 
 
 def fetch_quiz_attempt_status(request, quiz_id, student_id):
@@ -379,6 +385,7 @@ class StudyMaterialDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = StudyMaterial.objects.all()
     serializer_class = StudyMaterialSerializer
     #permission_classes = [permissions.IsAuthenticated]
+    
 
 
 

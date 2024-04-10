@@ -58,6 +58,7 @@ import EditQuiz from './Teacher/EditQuiz';
 import QuizQuestions from './Teacher/QuizQuestions';
 import AddQuizQuestion from './Teacher/AddQuizQuestion';
 import AssignQuiz from './Teacher/AssignQuiz';
+import AttemptedStudents from './Teacher/AttemptedStudents';
 
 
 
@@ -128,6 +129,7 @@ function Main(){
                     <Route path="/edit-chapter/:chapter_id" component={EditChapter} />
                     <Route path="/course-chapters/:course_id" component={CourseChapters} />
                     <Route path="/teacher-skill-courses/:skill_name/:teacher_id" component={TeacherSkillCourses} />
+                    <Route path="/attempted-students/:quiz_id" component={AttemptedStudents} />
 
 
 
