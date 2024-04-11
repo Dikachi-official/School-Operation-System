@@ -13,7 +13,7 @@ function QuizResult(props) {
     // To check if student is enrolled in a  course
     const [assignStatus, setassignStatus]=useState([]);
 
-    //Fetch teacher quiz after page refresh
+    // Fetch teacher quiz after page refresh
     useEffect(()=>{
         try{
             axios.get(`${baseUrl}/fetch-quiz-result/${props.quiz}/${props.student}`)
@@ -43,12 +43,12 @@ function QuizResult(props) {
                     <table className='table table-bordered'>
                         <tr>
                             <td>Total Questions</td>
-                            <td>10</td>
+                            <td>{resultData.total_questions}</td>
                         </tr>
 
                         <tr>
                             <td>Attempted Questions</td>
-                            <td>5</td>
+                            <td>{resultData.total_attempted_questions}</td>
                         </tr>
                     </table>
                 </div>

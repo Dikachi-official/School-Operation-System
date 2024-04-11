@@ -124,5 +124,5 @@ urlpatterns = [
     # ATTEMPTED QUIZ
     path('attempted-quiz/<int:quiz_id>', views.AttemptQuizList.as_view()),
     # QUIZ RESULT
-    path('fetch-quiz-result/<int:quiz_id>/<int:student_id>', views.AttemptQuizList.as_view()),
+    path('fetch-quiz-result/<int:quiz_id>/<int:student_id>', views.fetch_quiz_attempt_status),
 ]

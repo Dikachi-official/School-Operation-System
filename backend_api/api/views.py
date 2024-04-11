@@ -333,6 +333,7 @@ class CourseQuizList(generics.ListCreateAPIView):
             course = Course.objects.get(pk=course_id)
             return CourseQuiz.objects.filter(course=course)
 
+
 def fetch_quiz_assign_status(request, quiz_id, course_id):
     quiz = Quiz.objects.filter(id=quiz_id).first()
     course = Course.objects.filter(id=course_id).first()
@@ -353,14 +354,7 @@ class AttemptQuizList(generics.ListCreateAPIView):
         if 'quiz_id' in self.kwargs:
             quiz_id =self.kwargs['quiz_id']
             quiz = Quiz.objects.get(pk=quiz_id)
-            return AttemptQuiz.objects.filter(quiz=quiz)
-        
-        if 'quiz_id_for_result' in self.kwargs:
-            quiz_id =self.kwargs['quiz_id']
-            quiz = Quiz.objects.get(pk=quiz_id)
-            return AttemptQuiz.objects.filter(quiz=quiz)
-
-
+            return AttemptQuiz.objects.raw(f"SELECT * FROM main_attemptquiz WHERE quiz_id={int(quiz_id)} GROUP by student_id")
 
 
 def fetch_quiz_attempt_status(request, quiz_id, student_id):
@@ -371,6 +365,15 @@ def fetch_quiz_attempt_status(request, quiz_id, student_id):
         return JsonResponse({'bool':True})
     else:
         return JsonResponse({'bool':False})
+   
+   
+#attempted questions in quiz result page   
+def fetch_quiz_attempt_status(request, quiz_id, student_id):
+    quiz = Quiz.objects.filter(id=quiz_id).first()
+    student = Student.objects.filter(id=student_id).first()
+    total_questions = QuizQuestions.objects.filter(quiz=quiz).count()
+    total_attempted_questions = AttemptQuiz.objects.filter(quiz=quiz, student=student).values('student').count()
+    return JsonResponse({'total_questions':total_questions, 'total_attempted_question':total_attempted_questions})
     
 
 
