@@ -64,7 +64,7 @@ function UserStudyMaterials() {
                                         <td>{row.title}</td>
                                         <td>{row.description}</td>
                                         <td>
-                                            <button className="btn btn-outline-primary" onClick={()=>downloadFile(row.upload)}>Download File</button>{/*<Link to={`/${row.upload}`}>File</Link>*/}
+                                            <button className="btn btn-outline-primary" onClick={()=>downloadFile(row.upload)}>Download File</button>
                                         </td>
                                         <td>{row.remarks}</td>
                                     </tr>
