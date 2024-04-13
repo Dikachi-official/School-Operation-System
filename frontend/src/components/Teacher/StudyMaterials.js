@@ -30,6 +30,12 @@ function StudyMaterials() {
         document.title='Study materials'
     }, []);
 
+    //To download the file at student material(Teacher Dashboard)
+    const downloadFile = (file_url) =>{
+        window.location.href=file_url;
+    }
+
+
     // Delete Data with sweetalert2
     const Swal = require('sweetalert2');
     const handleDeleteClick = (study_id)=>{
@@ -91,7 +97,9 @@ function StudyMaterials() {
                                     {studyData.map((row,index)=>
                                     <tr>
                                         <td>{row.title}</td>
-                                        <td><Link t0={row.upload}>File</Link></td>
+                                        <td>
+                                        <button className="btn btn-outline-primary" onClick={()=>downloadFile(row.upload)}>Download File</button>
+                                        </td>
                                         <td>{row.remarks}</td>
                                         <td>
                                             <Link to={'/edit-study/'+row.id} className='btn btn-info btn-sm ms-1 text-white'><i className='bi bi-pencil-square'></i></Link>

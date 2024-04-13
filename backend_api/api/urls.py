@@ -121,6 +121,8 @@ urlpatterns = [
     path('study-materials/<int:course_id>', views.StudyMaterialList.as_view()),
     # STUDY MATERIAL DETAIL VIEW
     path('study-material/<int:pk>', views.StudyMaterialDetailView.as_view()),
+    
+    path('user/study-material/<int:course_id>', views.StudyMaterialList.as_view()),
     # ATTEMPTED QUIZ
     path('attempted-quiz/<int:quiz_id>', views.AttemptQuizList.as_view()),
     # QUIZ RESULT

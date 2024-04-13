@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 const baseUrl='http://127.0.0.1:8000/api';
-function StudyMaterials() {
+function UserStudyMaterials() {
     const [studyData, setstudyData]=useState([]);
     const [totalResult, settotalResult]=useState(0);
     const {course_id}=useParams()
@@ -16,7 +16,7 @@ function StudyMaterials() {
     //Fetch courses after page refresh
     useEffect(()=>{
         try{
-            axios.get(baseUrl+'/study-materials/'+course_id)
+            axios.get(baseUrl+'/user/study-materials/'+course_id)
             .then((res)=>{
                 settotalResult(res.data.length);
                 setstudyData(res.data);
@@ -30,6 +30,10 @@ function StudyMaterials() {
         document.title='Student Study Materials'
     }, []);
 
+    const downloadFile = (file_url) =>{
+        window.location.href=file_url;
+    }
+
 
 
 
@@ -38,7 +42,7 @@ function StudyMaterials() {
         <div className='container mt-4'>
             <div className='row'>
                 <aside className='col-md-3'>
-                    <TeacherSidebar/>
+                    <Sidebar/>
                 </aside>
                 <section className='col-md-9'>
                     <div className='card'>
@@ -49,18 +53,20 @@ function StudyMaterials() {
                                 <thead>
                                     <tr>
                                         <th>Title</th>
-                                        <th>Detail</th>
-                                        <th>Remarks</th>
+                                        <th>Description</th>
                                         <th>Action</th>
+                                        <th>Remarks</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {studyData.map((row,index)=>
                                     <tr>
                                         <td>{row.title}</td>
-                                        <td>{row.detail}</td>
+                                        <td>{row.description}</td>
+                                        <td>
+                                            <button className="btn btn-outline-primary" onClick={()=>downloadFile(row.upload)}>Download File</button>{/*<Link to={`/${row.upload}`}>File</Link>*/}
+                                        </td>
                                         <td>{row.remarks}</td>
-                                        <td><Link to={row.upload}>File</Link></td>
                                     </tr>
                                     )}
                                 </tbody>
@@ -73,4 +79,4 @@ function StudyMaterials() {
     )
 }
 
-export default StudyMaterials;
+export default UserStudyMaterials;

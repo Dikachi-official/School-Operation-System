@@ -24,6 +24,7 @@ import FavoriteCourses from './User/FavouriteCourses';
 import RecommendedCourses from './User/RecommendedCourses';
 import ProfileSetting from './User/ProfileSetting';
 import StudentChangePassword from './User/StudentChangePassword';
+import UserStudyMaterials from './User/UserStudyMaterials';
 
 
 // TEACHER ROUTE
@@ -107,6 +108,7 @@ function Main(){
                     <Route path="/recommended-courses" component={RecommendedCourses} />
                     <Route path="/profile-setting" component={ProfileSetting} />
                     <Route path="/student-change-password" component={StudentChangePassword} />
+                    <Route path="/user/study-materials/:course_id" component={UserStudyMaterials} />
 
 
 
