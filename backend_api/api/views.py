@@ -168,6 +168,15 @@ class CourseRatingList(generics.ListCreateAPIView):
     queryset = CourseRating.objects.all()
     serializer_class = CourseRatingSerializer
     #permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        if 'popular' in self.request.GET:
+            sql = "SELECT *,AVG(cr.rating) as avg_rating FROM api_courserating as cr INNER JOIN main_course as c ON cr.course_id=c, id GROUP BY c.id ORDER BY avg_ratingdesc LIMIT 4"
+            return CourseRating.objects.raw(sql)
+        if 'all' in self.request.GET:
+            sql = "SELECT *,AVG(cr.rating) as avg_rating FROM api_courserating as cr INNER JOIN main_course as c ON cr.course_id=c, id GROUP BY c.id ORDER BY avg_ratingdesc"
+            return CourseRating.objects.raw(sql)
+            
 
 
 

@@ -11,14 +11,24 @@ const baseUrl='http://127.0.0.1:8000/api';
 
 function Home(){
     const [courseData, setCourseData]=useState([]);
+    const [popularcourseData, setpopularcourseData]=useState([]);
 
-    //Fetch courses after page refresh
+    //Fetch $ courses after page refresh
     useEffect(()=>{
         try{
             axios.get(baseUrl+'/course/?result=4')
             .then((res)=>{
                 setCourseData(res.data);
+            });
+        }catch(error){
+            console.log(error);
+        }
 
+        // Fetch popular courses
+        try{
+            axios.get(baseUrl+'/popular-courses/?popular=1')
+            .then((res)=>{
+                setpopularcourseData(res.data);
             });
         }catch(error){
             console.log(error);
@@ -68,58 +78,26 @@ function Home(){
             <div className='p-0 d-flex w-100' >
                 <h3 className='pb-1 mb-4 mt-5 justify-content-start w-auto'>Popular Courses</h3> <h3 className='pb-1 mb-4 mt-5 justify-content-end text-start'><Link to="/popular-courses" className='align-items-end justify-content-end ml-90 w-auto text-end'>See All...</Link></h3>
             </div>
-            <div className='row p-2'>
-                <div className='col-md-3 p-2'>
-                    <div className="card">
-                        <Link to="/popular-courses">
-                            <img src="logo182.png" classname="card-img-top" alt="Course img" />
-                        </Link>
-                        <div className="card-body">
-                            <h5 className="card-title">Popular Courses</h5>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <Link to="/popular-courses" className="btn btn-primary">Go somewhere</Link>
+            <div className='row p-2 mb-4'>
+                {popularcourseData && popularcourseData.map((row, index)=>
+                    <div className='col-md-3 p-2'>
+                        <div className="card">
+                            <Link to={`/detail/${row.course_id}`}>
+                                <img src={row.course.featured_img} className='card-img-top' alt={row.course.title} />
+                            </Link>
+                            <div className="card-body">
+                                <h5 className="card-title"><Link to={`/detail/${row.course.id}`}>{row.course.title}</Link></h5>
+                            </div>
+                            <div className='card-footer'>
+                                <div className='title'>
+                                    <span>Rating: {row.rating}/5</span>
+                                    <span className='float-end'>Views: 462476</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div className='col-md-3 p-2'>
-                    <div className="card">
-                        <Link to="/popular-courses">
-                            <img src="logo182.png" classname="card-img-top" alt="Course img" />
-                        </Link>
-                        <div className="card-body">
-                            <h5 className="card-title">Popular Courses</h5>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <Link to="/popular-courses" className="btn btn-primary">Go somewhere</Link>
-                        </div>
-                    </div>
-                </div>
-
-                <div className='col-md-3 p-2'>
-                    <div className="card">
-                        <Link to="/popular-courses">
-                            <img src="logo182.png" classname="card-img-top" alt="Course img" />
-                        </Link>
-                        <div className="card-body">
-                            <h5 className="card-title">Popular Courses</h5>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <Link to="#" className="btn btn-primary">Go somewhere</Link>
-                        </div>
-                    </div>
-                </div>
-
-                <div className='col-md-3 p-2'>
-                    <div className="card">
-                        <Link to="/popular-courses">
-                            <img src="logo182.png" classname="card-img-top" alt="Course img" />
-                        </Link>
-                        <div className="card-body">
-                            <h5 className="card-title">Popular Courses</h5>
-                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <Link to="/popular-courses" className="btn btn-primary">Go somewhere</Link>
-                        </div>
-                    </div>
-                </div>
+                )}
+                
             </div>
             {/*=== END OF POPULAR COURSES ===*/}
 
