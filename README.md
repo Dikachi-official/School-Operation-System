@@ -22,7 +22,7 @@ This application is built using Django for the backend and React for the fronten
 
 
 
-Follow these steps to set up the project locally on your machine.
+## Follow these steps to set up the project locally on your machine.
 
 **Prerequisites**
 
